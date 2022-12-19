@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('./parts/headlib') %>
+        <link rel="stylesheet" href="stylesheets/homepage.css">
+        <title>CMBIS</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Fixes Footer to Bottom -->
+        <!-- Nav -->
+        <header>
+            <div class="container-fluid" id="nav">
+                <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"
+                    id="logo-container">
+                    <img src="images/logo.png" class="img-fluid rounded-circle" id="logo">
+                </div>
+
+                <nav class="navbar navbar-expand-md">
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Home<span class="sr-only">(current)</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#intro">Carousel</a>
+                                    <a class="dropdown-item" href="#announcement">Announcements</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#officials">Barangay Officials</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/aboutus">About Us</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="/services">Services</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#">Request Documents</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav mr-5">
+                            <li>
+                                <p class="nav-link text-white m-2">Hello <b>
+                                        <%= name %>
+                                    </b></p>
+                            </li>
+                            <li>
+                                <form action="/logout?_method=DELETE" method="post">
+                                    <button class="nav-link text-white m-2 bg-transparent" type="submit"
+                                        style="border: none; cursor: pointer;">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- Content -->
+        <main>
+            <div id="content">
+                <!-- Carousel -->
+                <div class="parallax-bg-img" style="background-image: url('images/Vector.png');">
+                    <div class="container-fluid" id="intro">
+                        <div class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100"
+                                        src="images/312807893_5676576422436687_6934263044224753269_n.png"
+                                        alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100"
+                                        src="images/312807893_5676576422436687_6934263044224753269_n.png"
+                                        alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100"
+                                        src="images/312807893_5676576422436687_6934263044224753269_n.png"
+                                        alt="Third slide">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- News -->
+                <div class="parallax-bg-img" style="background-image: url('images/Rectangle\ 109.png');">
+                    <div class="container-fluid" id="announcement">
+                        <div class="container-fluid" id="header-container">
+                            <p class="pt-3">LATEST NEWS AND ANNOUNCEMENTS</p>
+                        </div>
+                        <div class="container-fluid" id="content-container">
+                            <div class="row border">
+                                <% posts.forEach((post)=>{ %>
+                                    <div class="col col-post m-2">
+                                        <!-- <div class="col-lg-6 col-md-12 col-sm-3"> -->
+                                        <div class="row border">
+                                            <div class="card" id="announcement-item">
+                                                <div class="card-header" id="announcement-header">
+                                                    <%= post.title %>
+                                                </div>
+                                                <img class="post-card-img card-img-top align-self-center"
+                                                    src="data:image/png;base64,<%= post.image %>">
+                                                <div class="card-body">
+                                                    <sub id="date">
+                                                        <%= post.date %>
+                                                    </sub>&nbsp;&nbsp;&nbsp;<sub>
+                                                        <%= post.time %>
+                                                    </sub>
+                                                    <p class="card-text">
+                                                        <%= post.body %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Officials, t -->
+                <div class="parallax-bg-img" style="background-image: url('images/Vector.png');">
+                    <div class="container-fluid pb-0" id="officials">
+                        <div class="container-fluid" id="header-container">
+                            <p class="pt-3">BARANGAY OFFICIALS</p>
+                        </div>
+                        <div class="container-fluid" id="content-container" style="border-radius: 0;">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-3"></div>
+                                <% brgy_captain.forEach((captain)=>{ %>
+                                    <div class="col-lg-4 col-md-4 col-sm-3">
+                                        <div class="card" id="portrait-holder">
+                                            <img class="card-img-top" src="data:image/png;base64,<%= captain.image %>"
+                                                style="background-color: var(--secondary-color)"
+                                                onerror="javascript:this.src='images/blank_profile_pic.webp'">
+                                            <div class="card-body pt-0">
+                                                <div class="container" id="namespace">
+                                                    <h4>
+                                                        <%= captain.position %>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                            <h3>
+                                                <%= captain.name %>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+
+                                        <div class="col-lg-4 col-md-4 col-sm-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Officials, m -->
+            <div class="container-fluid"
+                style="background-color: var(--primary-color); box-shadow: 8px -6px 26px 3px rgba(0,0,0,0.45);">
+                <div class="container-fluid" id="officials">
+                    <div class="container-fluid" id="content-container" style="background-color: #00000000;">
+                        <div class="row">
+
+                            <% officials.forEach((official)=>{ %>
+                                <div class="col-lg-4 col-md-4 col-sm-3">
+                                    <div class="card" id="portrait-holder">
+                                        <img class="card-img-top" src="data:image/png;base64,<%= official.image %>"
+                                            style="background-color: var(--secondary-color)"
+                                            onerror="javascript:this.src='images/blank_profile_pic.webp'">
+                                        <div class="card-body pt-0">
+                                            <div class="container" id="namespace">
+                                                <h4>
+                                                    <%= official.position %>
+                                                </h4>
+                                            </div>
+                                            <h3>
+                                                <%= official.name %>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Officials, b -->
+            <div class="parallax-bg-img" style="background-image: url('images/Vector.png');">
+                <div class="container-fluid pt-0" id="officials">
+                    <div class="container-fluid" id="content-container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-3">
+                                <div class="card" id="portrait-holder">
+                                    <img class="card-img-top" src="images/logo.png"
+                                        style="background-color: var(--secondary-color)">
+                                    <div class="card-body pt-0">
+                                        <div class="container" id="namespace">
+                                            <h4>Lorem Ipsum</h4>
+                                        </div>
+                                        <h3>Lorem Ipsum</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-3">
+                                <div class="card" id="portrait-holder">
+                                    <img class="card-img-top" src="images/logo.png"
+                                        style="background-color: var(--secondary-color)">
+                                    <div class="card-body pt-0">
+                                        <div class="container" id="namespace">
+                                            <h4>Lorem Ipsum</h4>
+                                        </div>
+                                        <h3>Lorem Ipsum</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-3">
+                                <div class="card" id="portrait-holder">
+                                    <img class="card-img-top" src="images/logo.png"
+                                        style="background-color: var(--secondary-color)">
+                                    <div class="card-body pt-0">
+                                        <div class="container" id="namespace">
+                                            <h4>Lorem Ipsum</h4>
+                                        </div>
+                                        <h3>Lorem Ipsum</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <!-- Footer -->
+        <%- include('../globalparts/footer') %>
+    </div>
+</body>
+
+</html>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script> -->
+
+<!--*AJAX-->
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<script>
+    function getCurrentDate() {
+        var d = new Date()
+        var date = d.getFullYear() + "-" +
+            ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+            ("0" + d.getDate()).slice(-2)
+
+        return date
+    }
+
+    function getCurrentTime() {
+        var currentTime;
+        var currentDate = new Date()
+        var hour = currentDate.getHours();
+        var meridiem = hour >= 12 ? "PM" : "AM";
+        var currentTime = `${((hour + 11) % 12 + 1)}:${currentDate.getMinutes()} ${meridiem}`
+
+        return currentTime;
+    }
+
+    $('#date_message').val(getCurrentDate())
+    $('#time_message').val(getCurrentTime())
+
+    $('#form_message').on('submit', (e) => {
+        e.preventDefault()
+        $('#action').val('SendMessage')
+        $.ajax({
+            url: 'http://localhost:3000/sendmessage',
+            method: "POST",
+            data: $('#form_message').serialize(),
+            dataType: "JSON",
+            success: function (data) {
+                $('#form_message')[0].reset()
+                alert(data.message)
+                window.location.href = 'http://localhost:3000/'
+            }
+        })
+    })
+</script>

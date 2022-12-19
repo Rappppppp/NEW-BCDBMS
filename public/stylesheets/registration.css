@@ -1,0 +1,236 @@
+/* Fixes */
+:root {
+    --primary-color: #263A90;
+    --secondary-color: #ADD8FF;
+    --tertiary-color: #FCC422;
+    --tertiary-color-translucent: #fcc52240;
+    --quarternary-color: #FFFFFF;
+
+    --primary-font: Kanit;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--primary-font);
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    background-image: url(../images/Vector.png);
+    background-size: cover;
+    /* background-color: #5d71a5; */
+}
+
+/* CAPITALIZES FIRST LETTER OF INPUTS */
+.cap {
+    text-transform: capitalize;
+}
+
+.page-footer {
+    background-color: #22293E;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+}
+
+#footer-footer {
+    font-family: var(--primary-font);
+    padding-top: 10px;
+    color: #495888;
+    background-color: #191A2E;
+    position: absolute;
+    top: 28rem;
+}
+
+/* End */
+/* Actual Modifications */
+#nav {
+    width: 90%;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 2;
+    margin-left: 10%;
+    width: 78%;
+    height: auto;
+    background-color: var(--primary-color);
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 2px 15px 3px rgba(0, 0, 0, 0.45);
+}
+
+.nav-link {
+    color: var(--quarternary-color);
+}
+
+.nav-item :hover {
+    color: var(--primary-color);
+    background-color: var(--quarternary-color);
+    border-radius: 10px;
+}
+
+.nav-item {
+    font-size: larger;
+    padding-left: 30px;
+    border-radius: 10px;
+}
+
+#logo-container {
+    position: fixed;
+    z-index: 3;
+    padding: 0.5vw;
+    width: 10%;
+    height: auto;
+    background-color: var(--tertiary-color);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 8px -6px 26px 3px rgba(0, 0, 0, 0.45);
+}
+
+#main {
+    width: 85%;
+    padding-top: 5rem;
+    padding-bottom: 3%;
+}
+
+.btn:focus,
+.btn:active,
+.btn.active {
+    border: 0;
+    color: var(--tertiary-color);
+    background-color: var(--primary-color);
+}
+
+.btn {
+    border: 0;
+    background-color: var(--secondary-color);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-group {
+    margin-top: 3%;
+}
+
+button#action_button {
+    border-radius: 5px;
+    background-color: #263a90;
+}
+
+button#action_button:hover {
+    background-color: #192762;
+}
+
+#button-spacer {
+    height: 100%;
+    padding: 2.5%;
+    background-color: var(--primary-color);
+    border-top-right-radius: 10px;
+    box-shadow: 8px -6px 26px 3px rgba(0, 0, 0, 0.45);
+}
+
+#profilePic {
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+
+#bottom {
+    text-align: center;
+}
+
+/* End */
+/* Shared */
+.parallax-bg-img {
+    z-index: 0;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    box-shadow: 8px -6px 26px 3px rgba(0, 0, 0, 0.45);
+}
+
+#header-container {
+    margin-top: -3rem;
+    text-align: center;
+    height: 100%;
+    padding-bottom: 0.5%;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: var(--tertiary-color);
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 8px -6px 26px 3px rgba(0, 0, 0, 0.45);
+}
+
+#content-container {
+    height: 100%;
+    padding: 2.5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: var(--secondary-color);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 8px -6px 26px 3px rgba(0, 0, 0, 0.45);
+}
+
+.action_button {
+    float: right;
+}
+
+div.btn-submit {
+    float: right;
+}
+
+.row,
+[class^=col] {
+    border-width: 10px !important;
+    border-color: #00000000 !important;
+}
+
+/* End */
+/* Responsive */
+@media (max-width: 576px) {
+    #header-container {
+        font-size: x-large;
+    }
+
+    #button-spacer {
+        height: 30px;
+        border-radius: 0;
+    }
+
+    #btn-group,
+    #btn-group>.btn {
+        width: 100%;
+    }
+
+    /* Shared */
+    .parallax-bg-img {
+        height: 200vh;
+    }
+
+    #content-container {
+        padding-top: 8%;
+        padding-bottom: 8%;
+    }
+
+    /* End */
+}
+
+@media (max-width: 768px) {
+    #header-container {
+        font-size: xx-large;
+    }
+
+    .parallax-bg-img {
+        height: 200vh;
+    }
+}
+
+/* End */

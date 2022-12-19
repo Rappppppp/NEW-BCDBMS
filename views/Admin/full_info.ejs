@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+          text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <p>Full Information of <span name="name" id="name"><b><%= infos[0].ln%>, <%= infos[0].fn%></b></span></p>
+
+    <table>
+        <caption>User Information</caption>
+        <tr>
+            <th>UID</th>
+            <td><%= infos[0].id%></td>
+        </tr>
+
+        <tr>
+            <th>First  Name:</th>
+            <td><%= infos[0].fn%></td>
+        </tr>
+        <tr>
+            <th>Last   Name:</th>
+            <td><%= infos[0].ln%></td>
+        </tr>
+        <tr>
+            <th>Middle Name:</th>
+            <td><%= infos[0].mn%></td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td><%= infos[0].pw%></td>
+        </tr>
+        <tr>
+            <th>Gender:</th>
+            <td><%= infos[0].g%></td>
+        </tr>
+        <tr>
+            <th>Date of Birth:</th>
+            <td><%= infos[0].dob%></td>
+        </tr>
+        <tr>
+            <th>Age:</th>
+            <td><%= infos[0].age%></td>
+        </tr>
+        <tr>
+            <th>Place of Birth:</th>
+            <td><%= infos[0].pob%></td>
+        </tr>
+        <tr>
+            <th>Civil Status:</th>
+            <td><%= infos[0].cs%></td>
+        </tr>
+        <tr>
+            <th>Religion:</th>
+            <td><%= infos[0].r%></td>
+        </tr>
+    </table>
+
+    <table>
+        <caption>Contact Information</caption>
+        <tr>
+            <th>Contact Number:</th>
+            <td><%= infos[0].no %></td>
+        </tr>
+        <tr>
+            <th>Email Address:</th>
+            <td><%= infos[0].em %></td>
+        </tr>
+        <tr>
+            <th>Physical Address:</th>
+            <td><%= infos[0].ad %></td>
+        </tr>
+        <tr>
+            <th>Province:</th>
+            <td><%= infos[0].p %></td>
+        </tr>
+        <tr>
+            <th>Provincial Address:</th>
+            <td><%= infos[0].pa %></td>
+        </tr>
+    </table>
+
+    
+    <table>
+        <caption>Income Information</caption>
+        <tr>
+            <th>Education:</th>
+            <td><%= infos[0].ed %></td>
+        </tr>
+        <tr>
+            <th>Monthly Income:</th>
+            <td><%= infos[0].mi %></td>
+        </tr>
+        <tr>
+            <th>Monthly Expenses:</th>
+            <td><%= infos[0].me %></td>
+        </tr>
+        <tr>
+            <th>Monthly Net Income:</th>
+            <td><%= infos[0].mni %></td>
+        </tr>
+        <tr>
+            <th>Mean Income:</th>
+            <td><%= infos[0].mean %></td>
+        </tr>
+    </table>
+  
+</html>

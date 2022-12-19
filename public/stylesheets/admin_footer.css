@@ -1,0 +1,30 @@
+.wrapper {
+    box-sizing: border-box;
+    position: relative;
+    padding-bottom: 150px;
+    /* Height of footer */
+    min-height: 100%;
+}
+
+#content {
+    margin-left: var(--sidebar);
+    width: var(--content);
+}
+
+.page-footer {
+    background-color: #22293E;
+    position: absolute;
+    bottom: 0;
+    margin-left: var(--sidebar);
+    width: var(--content);
+    height: 150px;
+}
+
+#footer-footer {
+    font-family: var(--primary-font);
+    padding-top: 10px;
+    color: #495888;
+    background-color: #191A2E;
+    position: absolute;
+    bottom: 0;
+}

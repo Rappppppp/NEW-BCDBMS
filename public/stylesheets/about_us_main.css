@@ -1,0 +1,696 @@
+/** */
+
+.col-lg-5.offset-lg-4.ml-0 {
+    align-self: center;
+}
+
+.row-introduction {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: nowrap;
+    /* margin-right: -15px; */
+    /* margin-left: -15px; */
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.main-courtesy {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1rem 2rem;
+    color: white;
+}
+
+.main-courtesy em {
+    color: #ffe000;
+    ;
+    font-weight: bold;
+    font-style: normal;
+    margin-left: 3px;
+}
+
+.brgy-position {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.brgy-officials-header {
+    margin-block: 2rem;
+}
+
+.brgy-officials-header h1 {
+    font-size: xxx-large;
+    font-weight: bolder;
+}
+
+.container-introduction {
+    /* background-color: rgb(7 41 80 / 70%); */
+    /* padding: 5rem; */
+    border-radius: 10px;
+}
+
+.row-officials-header {
+    justify-content: center;
+}
+
+.mission-vision {
+    background-blend-mode: darken;
+}
+
+.col-md-12.message-btn {
+    margin-left: -48%;
+}
+
+.intro-history {
+    margin: 10rem;
+    padding: 3rem;
+    border-radius: 10px;
+    background-color: #00408578;
+}
+
+/**/
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-weight: 400;
+    background-color: #fff;
+    font-size: 16px;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+ul {
+    margin-bottom: 0px;
+}
+
+p {
+    margin-top: 2rem;
+    font-size: 14px;
+    line-height: 25px;
+    color: #333333;
+}
+
+/* 
+  ---------------------------------------------
+  global styles
+  --------------------------------------------- 
+  */
+html,
+body {
+    background: #fff;
+}
+
+@media (max-width: 991px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    .mobile-top-fix {
+        margin-top: 30px;
+        margin-bottom: 0px;
+    }
+
+    .mobile-bottom-fix {
+        margin-bottom: 30px;
+    }
+
+    .mobile-bottom-fix-big {
+        margin-bottom: 60px;
+    }
+}
+
+.section-heading {
+    text-align: center;
+    margin-top: 140px;
+    margin-bottom: 80px;
+}
+
+.section-heading h6 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #232d39;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.section-heading img {
+    margin: 20px auto;
+}
+
+.dark-bg h2 {
+    color: #fff;
+}
+
+.dark-bg p {
+    color: #fff;
+}
+
+.main-button a {
+    display: inline-block;
+    font-size: 15px;
+    padding: 12px 20px;
+    background-color: #0d1a99;
+    color: #fff;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+    transition: all .3s;
+}
+
+.main-button a:hover {
+    background-color: #0b1469;
+}
+
+
+/* 
+  ---------------------------------------------
+  header
+  --------------------------------------------- 
+  */
+
+.background-header {
+    background: rgba(250, 250, 250, 0.99) !important;
+    height: 80px !important;
+    position: absolute !important;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
+}
+
+.background-header .logo,
+.background-header .main-nav .nav li a {
+    color: #232d39 !important;
+}
+
+.header-area .main-nav {
+    min-height: 80px;
+    background: transparent;
+}
+
+.header-area .main-nav .menu-trigger {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 23px;
+    width: 32px;
+    height: 40px;
+    text-indent: -9999em;
+    z-index: 99;
+    right: 40px;
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .header-area .main-nav .logo {
+        color: #1e1e1e;
+    }
+
+    .header-area .main-nav .nav li.submenu:after {
+        color: #3B566E;
+        right: 25px;
+        font-size: 14px;
+        top: 15px;
+    }
+
+}
+
+@media (min-width: 767px) {
+    .header-area .main-nav .nav {
+        display: flex !important;
+    }
+}
+
+
+/* 
+  ---------------------------------------------
+  banner
+  --------------------------------------------- 
+  */
+
+.main-banner {
+    position: relative;
+}
+
+#bg-video {
+    min-width: 100%;
+    min-height: 100vh;
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#bg-video::-webkit-media-controls {
+    display: none !important;
+}
+
+.video-overlay {
+    position: absolute;
+    background-color: rgb(7 41 80 / 70%);
+    top: 0;
+    left: 0;
+    bottom: 3px;
+    width: 100%;
+}
+
+.main-banner .caption {
+    text-align: center;
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.main-banner .caption h6 {
+    margin-top: 0px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.main-banner .caption h2 {
+    margin-top: 30px;
+    margin-bottom: 25px;
+    font-size: 84px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.main-banner .caption h6 em {
+    font-style: normal;
+    color: #ffe000;
+    font-weight: 900;
+}
+
+
+/*
+  ---------------------------------------------
+  features
+  ---------------------------------------------
+  */
+
+#features {
+    margin-bottom: 80px;
+}
+
+.feature-item {
+    display: inline-block;
+    margin-bottom: 60px;
+}
+
+.feature-item .left-icon img {
+    float: left;
+    margin-right: 30px;
+}
+
+.feature-item .right-content {
+    display: inline;
+}
+
+.feature-item .right-content h4 {
+    margin-top: 0px;
+    margin-bottom: 7px;
+    letter-spacing: 0.25px;
+    color: #232d39;
+    font-size: 19px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.feature-item .right-content a.text-button {
+    margin-top: 7px;
+    display: inline-block;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #ed563b;
+    font-weight: 500;
+}
+
+/*
+  ---------------------------------------------
+  subscribe
+  ---------------------------------------------
+  */
+
+#call-to-action {
+    padding: 120px 0px;
+    background-image: url(../images/Vector.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 36px;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.cta-content h2 em {
+    font-style: normal;
+    font-weight: bold;
+    color: #ffd904;
+}
+
+.cta-content p {
+    font-size: 16px;
+    color: #fff;
+    margin: 15px 0px 25px 0px;
+    font-feature-settings: normal;
+}
+
+
+/*
+  --------------------------------------------
+  Our Classes
+  --------------------------------------------
+  */
+
+
+/* 
+  ---------------------------------------------
+  mission-vision-id
+  --------------------------------------------- 
+  */
+
+#mission-vision-id {
+    padding: 5%;
+    background-color: rgb(7 41 80 / 70%);
+    background-image: url(../images/Makati-City-Hall-Wikipedia.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#mission-vision-id .filters {
+    margin-bottom: 40px;
+}
+
+#mission-vision-id .filters ul {
+    padding: 0;
+    text-align: center;
+}
+
+#mission-vision-id .filters ul li {
+    list-style: none;
+    display: inline;
+    cursor: pointer;
+    position: relative;
+    margin-right: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: capitalize;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+#mission-vision-id .filters ul li:after {
+    content: "/";
+    margin-left: 10px;
+    color: #fff;
+}
+
+#mission-vision-id .filters ul li:last-child {
+    margin-right: 0px;
+}
+
+#mission-vision-id .filters ul li:last-child::after {
+    display: none;
+}
+
+#mission-vision-id .filters ul li.active,
+#mission-vision-id .filters ul li:hover {
+    color: #ed563b;
+}
+
+#mission-vision-id .filters-content {
+    margin-top: 50px;
+}
+
+#mission-vision-id .filters-content .show {
+    opacity: 1;
+    visibility: visible;
+    transition: all 350ms;
+}
+
+#mission-vision-id .filters-content .hide {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 350ms;
+}
+
+
+/* 
+  ---------------------------------------------
+  brgy-officials
+  --------------------------------------------- 
+  */
+.brgy-officials-item {
+    height: 100%;
+}
+
+#brgy-officials {
+    padding-bottom: 8%;
+}
+
+#brgy-officials .brgy-officials-item {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+#brgy-officials .brgy-officials-item img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+#brgy-officials .brgy-officials-item span {
+    font-size: 13px;
+    font-weight: 500;
+    color: #004085;
+    display: inline-block;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+#brgy-officials .brgy-officials-item h4 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #232d39;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+}
+
+#brgy-officials .brgy-officials-item p {
+    margin-bottom: 20px;
+}
+
+#brgy-officials .brgy-officials-item ul.social-icons li {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+#brgy-officials .brgy-officials-item ul.social-icons li:last-child {
+    margin-right: 0px;
+}
+
+#brgy-officials .brgy-officials-item ul.social-icons li a {
+    color: #232d39;
+    transition: all .3s;
+}
+
+#brgy-officials .brgy-officials-item ul.social-icons li a:hover {
+    color: #ed563b;
+}
+
+
+
+/* 
+  ---------------------------------------------
+  preloader
+  --------------------------------------------- 
+  */
+
+.js-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #232d39;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    z-index: 9999;
+    -webkit-transition: opacity 0.25s ease;
+    transition: opacity 0.25s ease;
+}
+
+.js-preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+@-webkit-keyframes dot {
+    50% {
+        -webkit-transform: translateX(96px);
+        transform: translateX(96px);
+    }
+}
+
+@keyframes dot {
+    50% {
+        -webkit-transform: translateX(96px);
+        transform: translateX(96px);
+    }
+}
+
+@-webkit-keyframes dots {
+    50% {
+        -webkit-transform: translateX(-31px);
+        transform: translateX(-31px);
+    }
+}
+
+@keyframes dots {
+    50% {
+        -webkit-transform: translateX(-31px);
+        transform: translateX(-31px);
+    }
+}
+
+.preloader-inner {
+    position: relative;
+    width: 142px;
+    height: 40px;
+    background: #232d39;
+}
+
+.preloader-inner .dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 12px;
+    left: 15px;
+    background: #fff;
+    border-radius: 50%;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-animation: dot 2.8s infinite;
+    animation: dot 2.8s infinite;
+}
+
+.preloader-inner .dots {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    margin-top: 12px;
+    margin-left: 31px;
+    -webkit-animation: dots 2.8s infinite;
+    animation: dots 2.8s infinite;
+}
+
+.preloader-inner .dots span {
+    display: block;
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin-left: 16px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+
+/* 
+  ---------------------------------------------
+  responsive
+  --------------------------------------------- 
+  */
+
+
+@media (max-width: 992px) {
+
+    .main-banner .caption h2 {
+        font-size: 64px;
+    }
+
+    #features {
+        margin-bottom: 110px;
+    }
+
+    #features .feature-item {
+        margin-bottom: 30px;
+    }
+
+    #our-classes .tabs-content {
+        margin-left: 0px;
+        margin-top: 30px;
+    }
+
+    .brgy-officials-item {
+        margin-bottom: 30px;
+    }
+
+    #contact-us #map {
+        margin-bottom: -7px;
+    }
+
+    #contact-us .contact-form {
+        padding: 30px;
+    }
+
+    #contact-us .contact-form #contact {
+        padding: 30px;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .feature-item .right-content a.text-button {
+        margin-left: 130px;
+    }
+}

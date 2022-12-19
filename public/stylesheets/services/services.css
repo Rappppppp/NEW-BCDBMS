@@ -1,0 +1,262 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    position: relative;
+    padding-bottom: 150px; /* Height of footer */
+    min-height: 100%;
+}
+  
+.page-footer {
+    background-color: #22293E;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+}
+
+#footer-footer {
+    font-family: 'kanit';
+    padding-top: 10px;
+    color: #495888;
+    background-color: #191A2E;
+    position: absolute;
+    bottom: 0;
+}
+
+#nav {
+    width: 90%;
+}
+
+#nav-container {
+    width: 100%;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 2;
+    margin-left: 10%;
+    width: 78%;
+    height: auto;
+    background-color: #263A90; 
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.45);
+}
+
+.nav-link {
+    color: white;
+}
+
+.nav-item {
+    font-family: 'kanit';
+    font-size: larger;
+    padding-left: 30px;
+}
+
+#logo-container {
+    position: fixed;
+    z-index: 3;
+    padding: 0.5vw;
+    width: 10%;
+    height: auto;
+    background-color: #FCC422;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 8px -6px 26px 3px rgba(0,0,0,0.45);
+}
+
+.bg-image {
+    z-index: 0;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    box-shadow: 8px -6px 26px 3px rgba(0,0,0,0.45);
+}
+
+/*Content*/
+
+#services {
+    padding-top: 12%;
+    padding-bottom: 3%;
+    height: 40%;
+}
+
+#header-container {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    opacity: 0.9;
+    background-color: #172251;
+}
+
+#img-services {
+    width: 100%;
+}
+
+p.titlecap {
+    color:#FCC422;
+    padding-top: 3%;
+    padding-bottom: 0%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    font-family: 'kanit';
+    font-weight:bolder;
+    font-size: xx-large;
+}
+
+p.text-content1 {
+    text-align: center;
+    color: #FCC422;
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 2%;
+    padding-bottom: 4%;
+    text-align: center;
+    font-weight: lighter;
+    font-size: medium;
+    
+}
+
+p.titlecap1,
+p.titlecap2,
+p.titlecap3, 
+p.titlecap4 {
+    color:#FCC422;
+    padding-top: 10%;
+    padding-bottom: 4%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    font-family: 'kanit';
+    font-weight:bolder;
+    font-size: xx-large;
+}
+
+p.text1,
+p.text2,
+p.text3 {
+    color:#FCC422;
+    padding-top: 3%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    font-weight: lighter;
+    font-size: medium;
+}
+
+
+.container {
+    position:relative;
+    justify-content: center;
+    align-items: center;
+    width: 120%;
+   
+}
+
+
+
+
+/* HEALTH CENTER */
+
+#health-center {
+    width: 100%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.45);
+    background-color:#263A90;
+}
+
+.img-health :hover {
+    transform: scale(1.1);
+}
+
+a.btn.btn-health {
+    background-color: #172251;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 19px;
+    font-size: 14px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 30%;
+  
+}
+
+
+/* TREE PLANTING */
+#tree-planting {
+    width: 100%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.45);
+    background-color:#263A90;
+}
+
+.img-tree :hover {
+    transform: scale(1.1);
+}
+
+a.btn.btn-agricultural {
+    background-color: #172251;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 19px;
+    font-size: 14px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 30%;
+}
+
+
+/* FIRE DEPT */
+#fire-dept1 {
+    width: 100%;
+    padding-top: 10%;
+    padding-bottom: 11%;
+    padding-left: 10%;
+    padding-right: 10%;
+    box-shadow: 2px 2px 15px 3px rgba(0,0,0,0.45);
+    background-color:#263A90;
+
+}
+
+.img-fire :hover {
+    transform: scale(1.1);
+}
+
+a.btn.btn-firedept {
+    background-color: #172251;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 19px;
+    font-size: 14px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 30%;
+}

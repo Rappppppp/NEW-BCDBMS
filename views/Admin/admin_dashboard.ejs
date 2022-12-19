@@ -1,0 +1,151 @@
+<!doctype html>
+<%- include('./admin_head') %>
+    <style>
+        /* style for charts */
+        .chart-container {
+            width: 100%;
+            height: 20em;
+            padding-bottom: 1rem;
+            padding-left: 1rem;
+        }
+
+        .card h3 {
+            padding-top: 1rem;
+        }
+
+        .row-header {
+            margin-top: 5rem;
+        }
+    </style>
+
+    <body>
+        <!-- Fixes Footer to Bottom -->
+        <div class="wrapper">
+            <!-- Nav -->
+            <%- include('./admin_nav') %>
+                <!-- Content -->
+                <main>
+                    <div id="content">
+                        <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 68.png');">
+                            <div class="jumbotron bg-white vertical-center">
+                                <div class="row row-header pb-5">
+                                    <div class="col">
+                                        <div class="card p-3">
+                                            <h2>TOTAL NUMBER OF HOUSEHOLDS: <span id="n_households">n</span></h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="card p-3">
+                                            <h2>TOTAL NUMBER OF FAMILIES: <span id="n_families">n</span></h2>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row text-center">
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <h3># of Residents and Their Ages</h3>
+                                            <div class="chart-container">
+                                                <canvas id="ages"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <h3>Gender</h3>
+                                            <div class="chart-container">
+                                                <canvas id="gender"></canvas>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="w-100 pb-5"></div>
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <h3>Civil Status</h3>
+                                            <div class="chart-container">
+                                                <canvas id="civil_status"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <h3>Social Sector</h3>
+                                            <div class="chart-container">
+                                                <canvas id="social_sector"></canvas>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="w-100 pb-5"></div>
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <h3>Cards Owned</h3>
+                                            <div class="chart-container">
+                                                <canvas id="cards"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <h3>Vaccinated</h3>
+                                            <div class="chart-container">
+                                                <canvas id="vaccinated"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="w-100 pb-5"></div>
+
+                                    <div class="col">
+                                        <div class="card">
+                                            <h3>Religion</h3>
+                                            <div class="chart-container">
+                                                <canvas id="religion"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 109.png');">
+                    </div>
+                    <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 68.png');">
+                    </div> -->
+
+                    </div>
+                </main>
+                <!-- Footer -->
+
+        </div>
+    </body>
+
+    </html>
+    <!--* AJAX-->
+    <script src="javascripts/admin_homepage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <!--* BOOTSTRAP JS-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!--* CHARTS-->
+    <!-- <script src="javascripts/charts/dist/charts.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.js"
+        integrity="sha512-d6nObkPJgV791iTGuBoVC9Aa2iecqzJRE0Jiqvk85BhLHAPhWqkuBiQb1xz2jvuHNqHLYoN3ymPfpiB1o+Zgpw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="javascripts/charts.js"></script>

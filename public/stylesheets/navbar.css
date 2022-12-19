@@ -1,0 +1,30 @@
+#nav {
+    width: 90%;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 2;
+    margin-left: 10%;
+    width: 78%;
+    height: auto;
+    background-color: var(--primary-color);
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 2px 15px 3px rgba(0, 0, 0, 0.45);
+}
+
+.nav-link {
+    color: var(--quarternary-color);
+}
+
+.nav-item :hover {
+    color: var(--primary-color);
+    background-color: var(--quarternary-color);
+    border-radius: 10px;
+}
+
+.nav-item {
+    font-size: larger;
+    padding-left: 30px;
+    border-radius: 10px;
+}

@@ -1,0 +1,26 @@
+#content-container {
+    overflow: auto;
+}
+
+.col-post {
+    justify-content: center;
+}
+
+.post-card-img {
+    width: fit-content;
+    height: 15rem;
+    /* height: 100%; */
+    object-fit: cover;
+}
+
+.card-img-top {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    margin-right: -15px;
+    margin-left: -15px;
+}

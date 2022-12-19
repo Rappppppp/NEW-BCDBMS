@@ -1,0 +1,30 @@
+@media (max-width: 576px) {
+    #header-container {
+        font-size: x-large;
+    }
+
+    #portrait-holder {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    div.container {
+        width: 90%;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    #header-container {
+        font-size: xx-large;
+    }
+
+    div.container {
+        width: 90%;
+    }
+
+  
+}

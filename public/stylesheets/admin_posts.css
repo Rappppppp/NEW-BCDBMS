@@ -1,0 +1,66 @@
+body {
+    /* background-image: url(/images/Rectangle\ 109.png); */
+    background-attachment: fixed;
+}
+
+/*      <%- include('./admin_footer') %> */
+.jumbotron {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.p-2 {
+    vertical-align: -webkit-baseline-middle;
+}
+
+b {
+    color: rgb(29, 29, 29);
+}
+
+.card-img-body {
+    align-self: center;
+}
+
+textarea {
+    border-style: none;
+}
+
+.w-25 {
+    width: 25% !important;
+    font-size: x-large;
+}
+
+div#portrait-holder {
+    height: 100%;
+}
+
+#title #body {
+    opacity: 100%;
+}
+
+
+@media (min-width: 576px) {
+    .card-group>.card:only-child {
+        border-radius: 0.25rem;
+        flex-flow: nowrap;
+        background: rgb(255 224 130);
+        color: rgb(29, 29, 29);
+        padding: 2rem;
+    }
+}
+
+
+.card-body {
+    align-self: center;
+    inline-size: -webkit-fill-available;
+}
+
+.button {
+    margin-top: 10px;
+    padding: 0.3rem;
+    padding-inline: 0.5rem;
+    border-style: none;
+    border-radius: 3px;
+    cursor: pointer;
+    z-index: 1;
+}

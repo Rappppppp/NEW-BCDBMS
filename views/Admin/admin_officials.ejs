@@ -1,0 +1,329 @@
+<!doctype html>
+<%- include('./admin_head') %>
+    <style>
+        #namespace {
+            background-color: var(--tertiary-color);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        #portrait-holder {
+            align-self: center;
+            text-align: center;
+            align-content: center;
+            font-family: var(--primary-font);
+            border-width: 10px;
+            border-bottom: 0px;
+            border-color: var(--quarternary-color);
+            box-shadow: 8px -6px 26px 3px rgb(0 0 0 / 45%);
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            padding-top: 2rem;
+        }
+
+        button#add_data {
+            margin: 1rem;
+            margin-left: -1px;
+        }
+    </style>
+
+    <body>
+        <div class="wrapper">
+            <!-- Fixes Footer to Bottom -->
+            <!-- Nav -->
+            <%- include('./admin_nav') %>
+                <!-- Content -->
+                <main>
+                    <div id="content">
+                        <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 68.png');">
+                            <div class="container-fluid pb-0" id="officials">
+                                <div class="container-fluid" id="header-container">
+                                    <!-- <p class="pt-3 mt-3">BARANGAY OFFICIALS</p> -->
+                                </div>
+                                <div class="container-fluid" id="content-container" style="border-radius: 0;">
+                                    <div class="row">
+                                        <!--*BRGY OFFICIALS START-->
+                                        <% for(var i=0; i < officials.length; i++){ %>
+                                            <div class="col-lg-4 col-md-4 col-sm-3 mt-5">
+                                                <div class="card" id="portrait-holder">
+                                                    <img class="card-img-top"
+                                                        style="background-color: var(--secondary-color);"
+                                                        src="data:image/png;base64,<%= officials[i].image %>"
+                                                        onerror="javascript:this.src='images/blank_profile_pic.webp'">
+                                                    <div class="card-body pt-0">
+                                                        <div class="container" id="namespace">
+                                                            <h4>
+                                                                <%= officials[i].position %>
+                                                            </h4>
+                                                        </div>
+                                                        <h3>
+                                                            <%= officials[i].name %>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <button class="button btn btn-danger  delete-btn"
+                                                            data-id="<%= officials[i].id %>"
+                                                            data-name="<%= officials[i].name %>">Delete</button>
+                                                        <button class="button btn btn-warning edit"
+                                                            data-id="<%= officials[i].id %>">Edit</button>
+                                                        <button class="button btn btn-danger  remove_photo"
+                                                            data-id="<%= officials[i].id %>"
+                                                            data-name="<%= officials[i].name %>">Remove Photo</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                                <!--*BRGY OFFICIALS END-->
+                                    </div>
+                                    <button class="button btn-warning btn add" id="add_data">Add</button>
+                                </div>
+                            </div>
+                            <div class="jumbotron"></div>
+                            <!-- <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 109.png');">
+                            </div>
+                            <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 68.png');">
+                            </div> -->
+                        </div>
+                    </div>
+                </main>
+        </div>
+    </body>
+
+    </html>
+
+    <div class="modal" tabindex="-1" id="action_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="form_post" action="http://localhost:3000/adminBrgyOfficials/editofficials"
+                    enctype="multipart/form-data" autocomplete="off">
+                    <div class="modal-header" id="dynamic_modal_title">
+                        <h5 class="modal-title">Edit Post</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Position</label>
+                            <!-- <input type="text" name="position_post" id="position_post" class="form-control" required> -->
+                            <select name="position_post" id="position_post" class="form-control" required>
+                                <option value="Barangay Captain">Barangay Captain</option>
+                                <option value="Barangay Kagawad">Barangay Kagawad</option>
+                                <option value="SK">SK</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="name_post" id="name_post" class="form-control" required>
+                        </div>
+
+
+                        <div class="img-container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="" id="sample_image" />
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="preview"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="file" name="official_profilepic" id="image_post" accept="image/*">
+                        </div>
+
+                        <div class="modal-footer mt-2">
+                            <input type="hidden" name="id" id="id" />
+                            <input type="hidden" name="action" id="action" value="Add" />
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                id="close_button">Close</button>
+                            <button type="submit" class="btn btn-primary" id="action_button">Edit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascripts/admin_homepage.js"></script>
+    <!--* AJAX-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!--* BOOTSTRAP JS-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- <script src="javascripts/posts.js"></script> -->
+    <script>
+        $(document).ready(() => {
+            url = 'http://localhost:3000/adminBrgyOfficials/editofficials'
+            $(document).on('click', '#close_button', function () {
+                $('#form_post')[0].reset()
+                $('#action_button').attr('disabled', false)
+                $('#action_modal').modal('hide')
+            })
+
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: { action: 'getID' },
+                dataType: "JSON",
+                success: function (data) {
+                    users_length = data.length
+                    $('#id').val(users_length + 1)
+                    $('#add_data').click(() => {
+                        $('#dynamic_modal_title').text('Add Data')
+                        $('#form_post')[0].reset()
+                        $('#action').val('Add')
+                        $('#action_button').text('Add')
+                        $('#action_modal').modal('show')
+                    })
+                }
+            })
+
+            // $('#action_button').on('click', () => {
+            //     window.location.href = 'http://localhost:3000/adminbrgyofficials'
+            //     // $.ajax({
+            //     //     url: url,
+            //     //     method: "POST",
+            //     //     data: $('#form_post').serialize(),
+            //     //     dataType: "JSON",
+            //     //     success: function (data) {
+            //     //         if (!alert(data.message)) {
+            //     //             window.location.reload();
+            //     //         }
+            //     //     }
+            //     // })
+            // })
+
+            var modal = $('#modal');
+            var image = document.getElementById('sample_image');
+            var cropper;
+
+            //$("body").on("change", ".image", function(e){
+            $('#image_post').change(function (event) {
+                var files = event.target.files;
+                var done = function (url) {
+                    image.src = url;
+                    modal.modal('show');
+                };
+                //var reader;
+                //var file;
+                //var url;
+            });
+
+            modal.on('shown.bs.modal', function () {
+                cropper = new Cropper(image, {
+                    aspectRatio: 1,
+                    viewMode: 3,
+                    preview: '.preview'
+                });
+            }).on('hidden.bs.modal', function () {
+                cropper.destroy();
+                cropper = null;
+            });
+
+            // $("#crop").click(function () {
+            //     canvas = cropper.getCroppedCanvas({
+            //         width: 400,
+            //         height: 400,
+            //     });
+
+            //     // canvas.toBlob(function(blob) {
+            //     // 	//url = URL.createObjectURL(blob);
+            //     // 	var reader = new FileReader();
+            //     //  	reader.readAsDataURL(blob); 
+            //     //  	reader.onloadend = function() {
+            //     //     	var base64data = reader.result;  
+
+            //     //     	$.ajax({
+            //     //     		url: "upload.php",
+            //     //         	method: "POST",                	
+            //     //         	data: {image: base64data},
+            //     //         	success: function(data){
+            //     //             	console.log(data);
+            //     //             	$modal.modal('hide');
+            //     //             	$('#uploaded_image').attr('src', data);
+            //     //             	//alert("success upload image");
+            //     //         	}
+            //     //       	});
+            //     //  	}
+            //     // });
+            // });
+
+
+
+
+            $(document).on('click', '.edit', function (e) {
+                e.preventDefault()
+                var id = $(this).data('id')
+
+                $('#dynamic_modal_title').text('Edit Post')
+                $('#action').val('Edit')
+                $('#action_button').text('Edit')
+                $('#action_modal').modal('show')
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: {
+                        action: 'fetch_single',
+                        id: id
+                    },
+                    dataType: "JSON",
+                    success: function (data) {
+                        $('#id').val(data.id)
+                        $('#position_post').val(data.position)
+                        $('#name_post').val(data.name)
+                        $('#action_button').on('click', () => {
+                            window.location.reload()
+                        })
+                    }
+                })
+            })
+
+            $(document).on('click', '.delete-btn', function () {
+                var id = $(this).data('id')
+                var name = $(this).data('name')
+                if (confirm(`Are you sure you want to delete ${name}?`)) {
+                    $.ajax({
+                        url: url,
+                        method: "POST",
+                        data: { action: 'delete_official', id: id },
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (!alert(data.message)) {
+                                window.location.reload();
+                            }
+                        }
+                    })
+                }
+            })
+
+            $(document).on('click', '.remove_photo', function () {
+                var id = $(this).data('id')
+                var name = $(this).data('name')
+                if (confirm(`Are you sure you want to delete photo of ${name}?`)) {
+                    $.ajax({
+                        url: url,
+                        method: "POST",
+                        data: { action: 'RemovePhoto', id: id },
+                        dataType: "JSON",
+                        success: function (data) {
+                            if (!alert(data.message)) {
+                                window.location.reload();
+                            }
+                        }
+                    })
+                }
+            })
+
+        })
+    </script>
