@@ -407,7 +407,7 @@
 
         $('#action').val('Add')
         $.ajax({
-            url: "http://localhost:3000/register/action",
+            url: `${window.location.origin}/register/action`,
             method: "POST",
             data: $('#register_form').serialize(),
             dataType: "JSON",

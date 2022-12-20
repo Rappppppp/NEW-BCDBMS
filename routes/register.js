@@ -27,24 +27,25 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 		var civil_status = req.body.civil_status
 		var religion = req.body.religion
 
-		console.log(`
-		= USER INFO =
-		ID: 			${id}
-		FN:				${first_name}
-		LN:				${last_name}
-		MN:				${middle_name}
-		PW:				${hashedPassword}
-		GNDR:			${gender}
-		DOB:			${dob}
-		AGE:			${age}
-		POB:			${pob}
-		CVSTAT:			${civil_status}
-		RLGN:			${religion}
-		`)
+		// console.log(`
+		// = USER INFO =
+		// ID: 			${id}
+		// FN:				${first_name}
+		// LN:				${last_name}
+		// MN:				${middle_name}
+		// PW:				${hashedPassword}
+		// GNDR:			${gender}
+		// DOB:			${dob}
+		// AGE:			${age}
+		// POB:			${pob}
+		// CVSTAT:			${civil_status}
+		// RLGN:			${religion}
+		// `)
 
 		var user_info = `
 		INSERT INTO user_info(
 			id,
+			isActive,
 		 	role,
 			first_name,
 			last_name, 
@@ -59,6 +60,7 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 		) 
 		VALUES (
 			"${id}", 
+			"1",
 			"User", 
 			"${first_name}", 
 			"${last_name}", 

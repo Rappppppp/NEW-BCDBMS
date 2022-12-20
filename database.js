@@ -1,28 +1,41 @@
-const mysql = require('mysql');
+// if (process.env.NODE_ENV !== 'produuction') {
+// 	require('dotenv').config()
+// }
+
+const mysql = require('mysql') //require('mysql');
 mysql.createConnection({ multipleStatements: true });
 //* DATABASE NAME HERE
-const createDB = require('./createDB')
+// const createDB = require('./createDB')
 
 //* CREATES DATABASE FROM createDB.js 
-createDB.setDB()
+// createDB.setDB()
 
 //* GET DB name
-const db = createDB.name()
+// const db = createDB.name()
 
-const con = mysql.createConnection({
-	host: 'localhost',
-	database: `${db}`,
-	user: 'root',
-	password: ''
+// const con = mysql.createConnection({
+// 	host: 'localhost',
+// 	database: `${db}`,
+// 	user: 'root',
+// 	password: ''
+// })
+
+const id_n_chars = 50
+
+const con = mysql.createPool({ //createConnection
+	host: 'sql.freedb.tech',
+	database: `freedb_CemboDB`,
+	user: 'freedb_arolatenci',
+	password: 'UV9u2t2qt%je6%s',
+	port: 3306
 })
 
-var id_n_chars = 100
-
-con.connect(function (error) {
+con.getConnection(function (error, connection) { //con.connect
 	if (error) {
 		throw error;
 	}
 	else {
+		const setUTF = `SET NAMES 'utf8mb4' COLLATE 'utf8mb4_general_ci';`
 
 		//* USER TABLES START
 		const user_info = `
@@ -109,18 +122,6 @@ con.connect(function (error) {
 		image 		LONGTEXT
 		)`
 
-		const insert_officials = `
-		INSERT INTO officials (id, position, name, image)
-		VALUES 
-		(0, 'Brgy. Captain', '', ''),
-		(1, 'Secretary', '', ''),
-		(2, 'Treasurer', '', ''),
-		(3, 'Councilor', '', ''),
-		(4, 'Councilor', '', ''),
-		(5, 'Councilor', '', '')
-		ON DUPLICATE KEY UPDATE id = id;
-		`
-
 		const posts = `
 		CREATE TABLE IF NOT EXISTS posts (
 		id INTEGER(100) AUTO_INCREMENT PRIMARY KEY, 
@@ -130,20 +131,6 @@ con.connect(function (error) {
 		time VARCHAR(10), 
 		image LONGTEXT
 		);`
-
-		const admin = `
-		CREATE TABLE IF NOT EXISTS admin (
-		id INTEGER(1) UNIQUE,  
-		name VARCHAR(20), 
-		password VARCHAR(20)
-		);`
-
-		const insert_admin = `
-		INSERT INTO admin (id, name, password)
-		VALUES 
-		(1, 'adminx', 'admin')
-		ON DUPLICATE KEY UPDATE id = id;
-		`
 
 		const setFKChecks = `
 		SET GLOBAL FOREIGN_KEY_CHECKS=0;
@@ -183,38 +170,30 @@ con.connect(function (error) {
 			if (err) throw err
 		})
 
-		con.query(setFKChecks, function (err, result) {
-			if (err) throw err
-		})
+		// con.query(setFKChecks, function (err, result) {
+		// 	if (err) throw err
+		// })
 
 		con.query(user_messages, function (err, result) {
 			if (err) throw err
-		})
-
-		//* ADMIN
-		// con.query(admin, function (err, result) {
-		// 	if (err) throw err
-		// })
-		// con.query(insert_admin, function (err, result) {
-		// 	if (err) throw err
-		// })
-
-		//* REGISTER END
-		con.query(posts, function (err, result) {
-			if (err) throw err
-			console.log('Tables created Successfully!')
 		})
 
 		//* BRGY OFFICIALS
 		con.query(officials, function (err, result) {
 			if (err) throw err
 		})
-		// con.query(insert_officials, function (err, result) {
-		// 	if (err) throw err
-		// })
 
+		con.query(setUTF, function (err, result) {
+			if (err) throw err
+		})
 
+		//* REGISTER END
+		con.query(posts, function (err, result) {
+			// if (err) done(err)
+			if (err) throw err
+			console.log('Tables created Successfully!')
+		})
 	}
-});
+})
 
-module.exports = con;
+module.exports = con
