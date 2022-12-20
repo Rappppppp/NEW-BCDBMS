@@ -129,45 +129,6 @@ router.post('/editofficials',
                     )`
                 database.query(query)
             }
-
-
-            // if (req.file) {
-            //     var id = req.body.id
-            //     var position = req.body.position_post
-            //     var name = req.body.name_post
-            //     // var image = req.file.buffer.toString('base64')
-            //     var image = (
-            //         await sharp(req.file.buffer)
-            //             .resize(500, 500)
-            //             .withMetadata()
-            //             .toBuffer())
-            //         .toString('base64')
-
-            //     var query = `
-            //     INSERT INTO officials (id, position, name, image) 
-            //     VALUES (
-            //         "${id}",
-            //         "${position}", 
-            //         "${name}",
-            //         "${image}"
-            //     )`
-            //     database.query(query)
-            //     res.redirect(req.get('referer'));
-            // }
-            // // Else if no pic still add
-            // else {
-            //     var id = req.body.id
-            //     var position = req.body.position_post
-            //     var name = req.body.name_post
-            //     var query = `
-            //     INSERT INTO officials (id, position, name) 
-            //     VALUES (
-            //         "${id}",
-            //         "${position}", 
-            //         "${name}"
-            //     )`
-            //     database.query(query)
-            // }
         }
 
         if (action == 'fetch_single') {
