@@ -184,6 +184,8 @@ router.post("/action", (request, response, next) => {
         WHERE id="${id}"
 		`
 
+		console.log(tryquery)
+
 		database.query(tryquery, (error, data) => {
 			response.json({
 				message: 'Data Deleted'

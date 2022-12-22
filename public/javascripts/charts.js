@@ -12,8 +12,10 @@ const bColor = ['rgba(255, 99,  132, 1)',
     'rgba(153, 102, 255, 1)',
     'rgba(255, 159, 64,  1)']
 
+const link = `${window.location.origin}/admindashboard`
+
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/n_households',
+    url: `${link}/n_households`,
     method: "POST",
     dataType: "JSON",
     success: function (households) {
@@ -30,7 +32,7 @@ $.ajax({
 })
 
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/n_families',
+    url: `${link}/n_families`,
     method: "POST",
     dataType: "JSON",
     success: function (families) {
@@ -48,7 +50,7 @@ $.ajax({
 
 //* DONE-GENDER
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/gender',
+    url: `${link}/gender`,
     method: "POST",
     dataType: "JSON",
     success: function (gender) {
@@ -103,7 +105,7 @@ $.ajax({
 
 //* DONE-AGE
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/age',
+    url: `${link}/age`,
     method: "POST",
     dataType: "JSON",
     success: function (age) {
@@ -163,7 +165,7 @@ $.ajax({
 
 //* STILL WORKING - SOCIAL SECTOR
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/social_sector',
+    url: `${link}/social_sector`,
     method: "POST",
     dataType: "JSON",
     success: function (ss) {
@@ -216,7 +218,7 @@ $.ajax({
 
 //* DONE-CARDS
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/cards',
+    url: `${link}/cards`,
     method: "POST",
     dataType: "JSON",
     success: function (cards) {
@@ -284,7 +286,7 @@ $.ajax({
 
 //* DONE-CIVIL STATUS
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/civil_status',
+    url: `${link}/civil_status`,
     method: "POST",
     dataType: "JSON",
     success: function (civil_status) {
@@ -339,7 +341,7 @@ $.ajax({
 
 //* DONE-CIVIL STATUS
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/vaccine',
+    url: `${link}/vaccine`,
     method: "POST",
     dataType: "JSON",
     success: function (vaccine) {
@@ -397,7 +399,7 @@ $.ajax({
 
 //* DONE-RELIGION
 $.ajax({
-    url: 'http://localhost:3000/admindashboard/religion',
+    url: `${link}/religion`,
     method: "POST",
     dataType: "JSON",
     success: function (religion) {

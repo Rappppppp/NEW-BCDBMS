@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express')
 const passport = require('passport')
 const session = require('express-session')
-const flash = require('connect-flash') // express-flash
+const flash = require('express-flash') // express-flash - connect-flash
 
 const path = require('path')
 const logger = require('morgan');
@@ -17,7 +17,7 @@ const app = express()
 
 //* Memory Leak Fix
 // const MySQLStore = require('express-mysql-session')(session);
-const database = require('./database');
+// const database = require('./database');
 
 // const sessionStore = new MySQLStore(database);
 
@@ -30,7 +30,8 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
     saveUninitialized: false,
-    // store: sessionStore //* Memory Leak Fix
+    // store: sessionStore, //* Memory Leak Fix
+    debug: true
 }))
 
 app.use(passport.initialize())
@@ -43,6 +44,7 @@ app.use(express.static(path.join(__dirname + 'node_modules')))
 app.use(express.static(__dirname + 'public/stylesheets'))
 app.use(express.static(__dirname + 'public/javascripts'))
 app.use(express.static(__dirname + 'public/images'))
+
 
 //* View engine setup
 app.set('views', path.join(__dirname, 'views'));
