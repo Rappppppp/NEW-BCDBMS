@@ -39,7 +39,7 @@ const con = mysql.createPool({ //createConnection
 // 	port: process.env.PORT,
 // })
 
-con.connect(function (error, connection) { //con.getConnection
+con.getConnection(function (error, connection) { //con.getConnection - con.connect
 	if (error) {
 		throw error;
 	}
