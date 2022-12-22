@@ -6,6 +6,7 @@ const passport = require('passport')
 const passport_init = require('../passport-config')
 const { checkNotAuthenticated } = require('../middlewares/authentication')
 
+router.use(flash())
 router.use(passport.initialize())
 router.use(passport.session())
 
@@ -18,7 +19,6 @@ database.query(`SELECT * FROM user_info`, (err, UsersData) => {
 })
 
 router.get('/', checkNotAuthenticated, (req, res) => {
-  req.flash('errorMessage', 'Invalid login credentials');
   res.render('login', { title: 'Login' })
 })
 

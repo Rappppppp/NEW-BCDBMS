@@ -27,14 +27,28 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
-app.use(passport.initialize())
-// app.use(passport.session())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: sessionStore //* Memory Leak Fix
 }))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+//* Set up flash messages
+app.use((req, res, next) => {
+    res.locals.successMessage = req.flash('successMessage');
+    res.locals.errorMessage = req.flash('errorMessage');
+    next();
+});
+
+app.dynamicHelpers({
+    flash: function (req, res) {
+        return req.flash();
+    }
+});
 
 //* app use to access folders
 app.use(express.static(path.join(__dirname, 'public')))
@@ -47,7 +61,7 @@ app.use(express.static(__dirname + 'public/images'))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//* URLS COMING FROM ROUTES.JS FILES 
+//* ROUTES AND URLS COMING FROM ROUTES.JS FILES 
 //X SUPER ADMIN ONLY
 const adminOfficials = require('./routes/Admin/brgyofficials')
 app.use('/adminBrgyOfficials', adminOfficials)
@@ -110,16 +124,10 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-// Set up flash messages
-app.use((req, res, next) => {
-    res.locals.successMessage = req.flash('successMessage');
-    res.locals.errorMessage = req.flash('errorMessage');
-    next();
+port = 5000 // 5000 for online, 3000 default
+
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
 });
-
-
-var port = (process.env.PORT || 5000);  // 5000 for online, 3000 default
-
-app.listen(port);
 
 module.exports = app
