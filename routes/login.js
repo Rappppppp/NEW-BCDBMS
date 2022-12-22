@@ -19,7 +19,6 @@ database.query(`SELECT * FROM user_info`, (err, UsersData) => {
 })
 
 router.get('/', checkNotAuthenticated, (req, res) => {
-  req.flash()
   res.render('login', { title: 'Login' })
 })
 

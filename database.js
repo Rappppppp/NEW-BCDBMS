@@ -180,7 +180,6 @@ con.getConnection(function (error, connection) { //con.connect
 
 		con.query(income_info, function (err, result) {
 			if (err) throw err
-			console.log('Tables created Successfully!')
 		})
 
 		con.query(user_messages, function (err, result) {
@@ -196,7 +195,6 @@ con.getConnection(function (error, connection) { //con.connect
 		con.query(posts, function (err, result) {
 			// if (err) done(err)
 			if (err) throw err
-
 			console.log('Tables created Successfully!')
 		})
 	}
