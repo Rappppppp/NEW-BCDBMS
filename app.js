@@ -44,12 +44,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.dynamicHelpers({
-    flash: function (req, res) {
-        return req.flash();
-    }
-});
-
 //* app use to access folders
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(path.join(__dirname + 'node_modules')))
