@@ -8,8 +8,8 @@ const createError = require('http-errors');
 const express = require('express')
 const cookieParser = require('cookie-parser');
 // const bcrypt = require('bcrypt')
-const passport = require('passport')
 const flash = require('express-flash')
+const passport = require('passport')
 const session = require('express-session')
 const path = require('path')
 const logger = require('morgan');
@@ -27,6 +27,8 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
+app.use(passport.initialize())
+// app.use(passport.session())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -86,10 +88,6 @@ const errorpage = require('./routes/404')
 app.use('/register', register)
 app.use('/login', loginpage)
 app.use('/404', errorpage)
-
-//
-app.use(passport.initialize())
-app.use(passport.session())
 
 // REDIRECTS ALL USERS IF URL IS NOT FOUND
 app.all('*', (req, res) => {
