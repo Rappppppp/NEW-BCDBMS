@@ -22,21 +22,21 @@ mysql.createConnection({ multipleStatements: true });
 
 const id_n_chars = 50
 
-// const con = mysql.createPool({ //createConnection
-// 	host: 'sql.freedb.tech',
-// 	database: `freedb_CemboDB`,
-// 	user: 'freedb_arolatenci',
-// 	password: 'ckgj?M*@Fg3*7bF',
-// 	port: 3306
-// })
-
 const con = mysql.createPool({ //createConnection
-	host: process.env.DB_HOST,
+	host: 'sql.freedb.tech',
 	database: `freedb_CemboDB`,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASSWORD,
-	port: process.env.PORT,
+	user: 'freedb_arolatenci',
+	password: 'ckgj?M*@Fg3*7bF',
+	port: 3306
 })
+
+// const con = mysql.createPool({ //createConnection
+// 	host: process.env.DB_HOST,
+// 	database: `freedb_CemboDB`,
+// 	user: process.env.DB_USER,
+// 	password: process.env.DB_PASSWORD,
+// 	port: process.env.PORT,
+// })
 
 con.getConnection(function (error, connection) { //con.connect
 	if (error) {
