@@ -1,7 +1,5 @@
 //* DOTENV
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
-}
+if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
 
 //* Initialization
 const createError = require('http-errors');
@@ -29,7 +27,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
     saveUninitialized: false,
     store: sessionStore //* Memory Leak Fix
