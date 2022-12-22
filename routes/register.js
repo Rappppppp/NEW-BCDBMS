@@ -209,26 +209,20 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 
 	}
 
-	database.query(user_info, function (error, data) {
-	})
-
-	database.query(contact_info, function (error, data) {
-	})
-
-	database.query(makati_info, function (error, data) {
-	})
-
-	database.query(household_info, function (error, data) {
-	})
-
-	database.query(makati_cards, function (error, data) {
-	})
+	database.query(user_info)
+	database.query(contact_info)
+	database.query(makati_info)
+	database.query(household_info)
+	database.query(makati_cards)
 
 	database.query(income_info, function (error, data) {
-		res.json({
-			message: 'Registration Success'
-		});
+		res.json(
+			{
+				message: 'Registration Success'
+			}
+		);
 	})
+
 })
 
 module.exports = router

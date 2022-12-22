@@ -1,16 +1,18 @@
 //* DOTENV
-if (process.env.NODE_ENV !== 'produuction') {
+if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 }
 
 //* Initialization
 const createError = require('http-errors');
-const express = require('express')
 const cookieParser = require('cookie-parser');
-// const bcrypt = require('bcrypt')
-const flash = require('express-flash')
+
+// Express
+const express = require('express')
 const passport = require('passport')
 const session = require('express-session')
+const flash = require('connect-flash') // express-flash
+
 const path = require('path')
 const logger = require('morgan');
 const app = express()
@@ -26,7 +28,6 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
-app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -36,13 +37,7 @@ app.use(session({
 
 app.use(passport.initialize())
 app.use(passport.session())
-
-//* Set up flash messages
-// app.use((req, res, next) => {
-//     res.locals.successMessage = req.flash('successMessage');
-//     res.locals.errorMessage = req.flash('errorMessage');
-//     next();
-// });
+app.use(flash())
 
 //* app use to access folders
 app.use(express.static(path.join(__dirname, 'public')))

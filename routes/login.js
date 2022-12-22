@@ -1,8 +1,10 @@
 const express = require('express')
+const passport = require('passport')
+const session = require('express-session')
+const flash = require('connect-flash')
+
 const router = express.Router()
 const database = require('../database')
-const flash = require('express-flash')
-const passport = require('passport')
 const passport_init = require('../passport-config')
 const { checkNotAuthenticated } = require('../middlewares/authentication')
 
@@ -19,7 +21,7 @@ database.query(`SELECT * FROM user_info`, (err, UsersData) => {
 })
 
 router.get('/', checkNotAuthenticated, (req, res) => {
-  req.flash('login', 'Welcome to Login')
+  req.flash()
   res.render('login', { title: 'Login' })
 })
 
