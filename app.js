@@ -110,6 +110,13 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
+// Set up flash messages
+app.use((req, res, next) => {
+    res.locals.successMessage = req.flash('successMessage');
+    res.locals.errorMessage = req.flash('errorMessage');
+    next();
+});
+
 
 var port = (process.env.PORT || 5000);  // 5000 for online, 3000 default
 

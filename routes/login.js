@@ -18,7 +18,7 @@ database.query(`SELECT * FROM user_info`, (err, UsersData) => {
 })
 
 router.get('/', checkNotAuthenticated, (req, res) => {
-  req.flash()
+  req.flash('errorMessage', 'Invalid login credentials');
   res.render('login', { title: 'Login' })
 })
 
