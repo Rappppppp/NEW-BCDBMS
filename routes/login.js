@@ -6,9 +6,9 @@ const passport = require('passport')
 const passport_init = require('../passport-config')
 const { checkNotAuthenticated } = require('../middlewares/authentication')
 
-router.use(flash())
 router.use(passport.initialize())
 router.use(passport.session())
+router.use(flash())
 
 database.query(`SELECT * FROM user_info`, (err, UsersData) => {
   passport_init(
@@ -19,13 +19,16 @@ database.query(`SELECT * FROM user_info`, (err, UsersData) => {
 })
 
 router.get('/', checkNotAuthenticated, (req, res) => {
+  req.flash('login', 'Welcome to Login')
   res.render('login', { title: 'Login' })
 })
 
-router.post('/', checkNotAuthenticated, passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-  failureFlash: true
-}))
+router.post('/', checkNotAuthenticated, passport.authenticate('local',
+  {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+  }
+))
 
 module.exports = router;
