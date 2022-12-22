@@ -16,10 +16,10 @@ const logger = require('morgan');
 const app = express()
 
 //* Memory Leak Fix
-const MySQLStore = require('express-mysql-session')(session);
+// const MySQLStore = require('express-mysql-session')(session);
 const database = require('./database');
 
-const sessionStore = new MySQLStore(database);
+// const sessionStore = new MySQLStore(database);
 
 //* Access File Exports
 app.use(logger('dev'))
@@ -30,7 +30,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
     saveUninitialized: false,
-    store: sessionStore //* Memory Leak Fix
+    // store: sessionStore //* Memory Leak Fix
 }))
 
 app.use(passport.initialize())

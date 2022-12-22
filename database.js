@@ -2,7 +2,7 @@
 // 	require('dotenv').config()
 // }
 
-const mysql = require('mysql2') //require('mysql');
+const mysql = require('mysql') //require('mysql');
 mysql.createConnection({ multipleStatements: true });
 //* DATABASE NAME HERE
 // const createDB = require('./createDB')
@@ -22,12 +22,13 @@ mysql.createConnection({ multipleStatements: true });
 
 const id_n_chars = 50
 
-const con = mysql.createPool({ //createConnection
+const con = mysql.createConnection({ //createPool
 	host: 'sql.freedb.tech',
 	database: `freedb_CemboDB`,
 	user: 'freedb_arolatenci',
 	password: 'ckgj?M*@Fg3*7bF',
-	port: 3306
+	port: 3306,
+	charset: "utf8mb4"
 })
 
 // const con = mysql.createPool({ //createConnection
@@ -38,7 +39,7 @@ const con = mysql.createPool({ //createConnection
 // 	port: process.env.PORT,
 // })
 
-con.getConnection(function (error, connection) { //con.connect
+con.connect(function (error, connection) { //con.getConnection
 	if (error) {
 		throw error;
 	}
