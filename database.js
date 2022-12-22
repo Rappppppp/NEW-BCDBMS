@@ -150,13 +150,13 @@ con.getConnection(function (error, connection) { //con.getConnection - con.conne
 		time VARCHAR(10)
 		)`
 
-		const setFKChecks = `
-		SET GLOBAL FOREIGN_KEY_CHECKS=0;
-		`
+		// const setFKChecks = `
+		// SET GLOBAL FOREIGN_KEY_CHECKS=0;
+		// `
 
-		con.query(setFKChecks, function (err, result) {
-			if (err) throw err
-		})
+		// con.query(setFKChecks, function (err, result) {
+		// 	if (err) throw err
+		// })
 
 		con.query(user_info, function (err, result) {
 			if (err) throw err
