@@ -2,7 +2,7 @@
 // 	require('dotenv').config()
 // }
 
-const mysql = require('mysql') //require('mysql');
+const mysql = require('mysql2') //require('mysql');
 mysql.createConnection({ multipleStatements: true });
 //* DATABASE NAME HERE
 // const createDB = require('./createDB')
