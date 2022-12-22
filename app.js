@@ -14,12 +14,14 @@ const session = require('express-session')
 const path = require('path')
 const logger = require('morgan');
 const app = express()
-const { checkAuthenticated, checkNotAuthenticated } = require('./middlewares/authentication')
+
+//* Memory Leak Fix
+const MySQLStore = require('express-mysql-session')(session);
+const database = require('./database');
+
+const sessionStore = new MySQLStore(database);
 
 //* Access File Exports
-const database = require('./database')
-const passport_init = require('./passport-config')
-
 app.use(logger('dev'))
 app.use(express.json())
 app.use(cookieParser())
@@ -28,7 +30,8 @@ app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: sessionStore //* Memory Leak Fix
 }))
 
 //* app use to access folders
@@ -108,5 +111,10 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+
+var port = (process.env.PORT || 5000);  // 5000 for online, 3000 default
+
+app.listen(port);
 
 module.exports = app

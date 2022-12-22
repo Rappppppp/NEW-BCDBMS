@@ -81,7 +81,6 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 		var province = req.body.province
 		var provincial_address = req.body.provincial_address
 
-
 		var contact_info = `
 		INSERT INTO contact_info(
 			user_id,
@@ -99,6 +98,8 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			"${province}",
 			"${provincial_address}"
 		)`
+
+		console.log(contact_number)
 
 		// //* MAKATI INFO
 		var isVoter = req.body.isVoter
@@ -133,7 +134,6 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			"${len_stay_cembo}",
 			"${len_stay_curr}"
 		)`
-
 
 		var household = req.body.Household
 		var families_household = req.body.Families
@@ -180,6 +180,7 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			"${makatizen}",
 			"${philhealth}"
 		)`
+
 
 		// //* INCOME INFO
 		var educ = req.body.educ

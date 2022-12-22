@@ -22,12 +22,20 @@ mysql.createConnection({ multipleStatements: true });
 
 const id_n_chars = 50
 
+// const con = mysql.createPool({ //createConnection
+// 	host: 'sql.freedb.tech',
+// 	database: `freedb_CemboDB`,
+// 	user: 'freedb_arolatenci',
+// 	password: 'ckgj?M*@Fg3*7bF',
+// 	port: 3306
+// })
+
 const con = mysql.createPool({ //createConnection
-	host: 'sql.freedb.tech',
+	host: process.env.DB_HOST,
 	database: `freedb_CemboDB`,
-	user: 'freedb_arolatenci',
-	password: 'UV9u2t2qt%je6%s',
-	port: 3306
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	port: process.env.PORT,
 })
 
 con.getConnection(function (error, connection) { //con.connect
@@ -35,7 +43,6 @@ con.getConnection(function (error, connection) { //con.connect
 		throw error;
 	}
 	else {
-		const setUTF = `SET NAMES 'utf8mb4' COLLATE 'utf8mb4_general_ci';`
 
 		//* USER TABLES START
 		const user_info = `
@@ -81,7 +88,7 @@ con.getConnection(function (error, connection) { //con.connect
 		)`
 
 		const household_info = `
-		CREATE TABLE IF NOT EXISTS household_info (	\
+		CREATE TABLE IF NOT EXISTS household_info (
 		head_id 						INTEGER(${id_n_chars}) AUTO_INCREMENT PRIMARY KEY,
 		user_id 						VARCHAR(${id_n_chars}),							
 		household 					TINYINT, 			   							
@@ -115,8 +122,8 @@ con.getConnection(function (error, connection) { //con.connect
 		//* USER TABLES END
 
 		const officials = `
-		CREATE TABLE IF NOT EXISTS officials (
-		id 				INTEGER(${id_n_chars}) UNIQUE, 
+		CREATE TABLE IF NOT EXISTS officials (	
+		id 				INTEGER(20) UNIQUE, 
 		position 	VARCHAR(30), 
 		name 			VARCHAR(50), 
 		image 		LONGTEXT
@@ -126,26 +133,31 @@ con.getConnection(function (error, connection) { //con.connect
 		CREATE TABLE IF NOT EXISTS posts (
 		id INTEGER(100) AUTO_INCREMENT PRIMARY KEY, 
 		title VARCHAR(100), 
-		body VARCHAR(1000), 
+		body VARCHAR(500), 
 		date VARCHAR(10), 
 		time VARCHAR(10), 
 		image LONGTEXT
-		);`
+		)`
 
-		const setFKChecks = `
-		SET GLOBAL FOREIGN_KEY_CHECKS=0;
-		`
+		// const setFKChecks = `
+		// SET GLOBAL FOREIGN_KEY_CHECKS=0;
+		// `
 
 		const user_messages = `
 		CREATE TABLE IF NOT EXISTS user_messages (
 		id INTEGER(100) AUTO_INCREMENT PRIMARY KEY, 
 		email VARCHAR(50), 
-		body VARCHAR(1000), 
+		body VARCHAR(500), 
 		date VARCHAR(10), 
 		time VARCHAR(10)
-		);`
+		)`
+
 
 		//^ SET QUERIES
+		// con.query(setFKChecks, function (err, result) {
+		// 	if (err) throw err
+		// })
+
 		con.query(user_info, function (err, result) {
 			if (err) throw err
 		})
@@ -168,11 +180,8 @@ con.getConnection(function (error, connection) { //con.connect
 
 		con.query(income_info, function (err, result) {
 			if (err) throw err
+			console.log('Tables created Successfully!')
 		})
-
-		// con.query(setFKChecks, function (err, result) {
-		// 	if (err) throw err
-		// })
 
 		con.query(user_messages, function (err, result) {
 			if (err) throw err
@@ -183,14 +192,11 @@ con.getConnection(function (error, connection) { //con.connect
 			if (err) throw err
 		})
 
-		con.query(setUTF, function (err, result) {
-			if (err) throw err
-		})
-
 		//* REGISTER END
 		con.query(posts, function (err, result) {
 			// if (err) done(err)
 			if (err) throw err
+
 			console.log('Tables created Successfully!')
 		})
 	}
