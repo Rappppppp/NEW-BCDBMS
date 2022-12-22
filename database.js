@@ -22,7 +22,7 @@ mysql.createConnection({ multipleStatements: true });
 
 const id_n_chars = 50
 
-const con = mysql.createConnection({ //createPool
+const con = mysql.createPool({ //createConnection
 	host: 'sql.freedb.tech',
 	database: `freedb_CemboDB`,
 	user: 'freedb_arolatenci',
@@ -140,9 +140,6 @@ con.connect(function (error, connection) { //con.getConnection
 		image LONGTEXT
 		)`
 
-		// const setFKChecks = `
-		// SET GLOBAL FOREIGN_KEY_CHECKS=0;
-		// `
 
 		const user_messages = `
 		CREATE TABLE IF NOT EXISTS user_messages (
@@ -153,11 +150,13 @@ con.connect(function (error, connection) { //con.getConnection
 		time VARCHAR(10)
 		)`
 
+		const setFKChecks = `
+		SET GLOBAL FOREIGN_KEY_CHECKS=0;
+		`
 
-		//^ SET QUERIES
-		// con.query(setFKChecks, function (err, result) {
-		// 	if (err) throw err
-		// })
+		con.query(setFKChecks, function (err, result) {
+			if (err) throw err
+		})
 
 		con.query(user_info, function (err, result) {
 			if (err) throw err

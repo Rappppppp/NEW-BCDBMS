@@ -15,12 +15,6 @@ const path = require('path')
 const logger = require('morgan');
 const app = express()
 
-//* Memory Leak Fix
-// const MySQLStore = require('express-mysql-session')(session);
-// const database = require('./database');
-
-// const sessionStore = new MySQLStore(database);
-
 //* Access File Exports
 app.use(logger('dev'))
 app.use(express.json())
@@ -30,7 +24,6 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
     saveUninitialized: false,
-    // store: sessionStore, //* Memory Leak Fix
     debug: true
 }))
 
@@ -113,7 +106,7 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-port = 5000 // 5000 for online, 3000 default
+port = 5000; // 5000 for online, 3000 default
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
