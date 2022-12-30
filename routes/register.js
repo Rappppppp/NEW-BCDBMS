@@ -220,9 +220,8 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			{
 				message: 'Registration Success'
 			}
-		);
+		)
 	})
-
 })
 
 module.exports = router

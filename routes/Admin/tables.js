@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const database = require('../../database')
-//const multer = require('multer')
 const async = require("async")
 
 // Passport Middlewares

@@ -11,17 +11,6 @@ const passport = require('passport')
 router.use(passport.initialize())
 router.use(passport.session())
 
-// function authRole(role) {
-//     return (req, res, next) => {
-//         if (req.user.role !== role) {
-//             res.status(401)
-//             return res.send('Not Allowed')
-//         }
-//         next()
-//     }
-// }
-
-
 router.get("/", authUser, checkAuthenticated, authRole('Admin'), (req, res, next) => {
     async.parallel([
         (cb) => { database.query(`SELECT * FROM posts`, cb) },
