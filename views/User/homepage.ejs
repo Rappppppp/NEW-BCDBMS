@@ -133,7 +133,7 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-3"></div>
                                 <% brgy_captain.forEach((captain)=>{ %>
-                                    <div class="col-lg-4 col-md-4 col-sm-3">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
                                         <div class="card" id="portrait-holder">
                                             <img class="card-img-top" src="data:image/png;base64,<%= captain.image %>"
                                                 style="background-color: var(--secondary-color)"
@@ -166,7 +166,7 @@
                         <div class="row">
 
                             <% officials.forEach((official)=>{ %>
-                                <div class="col-lg-4 col-md-4 col-sm-3">
+                                <div class="col-lg-4 col-md-4 col-sm-12">
                                     <div class="card" id="portrait-holder">
                                         <img class="card-img-top" src="data:image/png;base64,<%= official.image %>"
                                             style="background-color: var(--secondary-color)"
@@ -283,14 +283,14 @@
         e.preventDefault()
         $('#action').val('SendMessage')
         $.ajax({
-            url: 'http://localhost:3000/sendmessage',
+            url: `${window.location.origin}/sendmessage`,
             method: "POST",
             data: $('#form_message').serialize(),
             dataType: "JSON",
             success: function (data) {
                 $('#form_message')[0].reset()
                 alert(data.message)
-                window.location.href = 'http://localhost:3000/'
+                window.location.reload()
             }
         })
     })

@@ -8,8 +8,8 @@ const cookieParser = require('cookie-parser');
 // Express
 const express = require('express')
 const passport = require('passport')
-const session = require('express-session')
 const flash = require('express-flash') // express-flash - connect-flash
+const session = require('express-session')
 
 const path = require('path')
 const logger = require('morgan');

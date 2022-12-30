@@ -4,7 +4,7 @@ function login() {
     $('#login_info').on('submit', (e) => {
       e.preventDefault()
       $.ajax({
-        url: "http://localhost:3000/adminlogin/action",
+        url: `${window.location.origin}/adminlogin/action`,
         method: "POST",
         data: { action: 'fetch' },
         dataType: "JSON",

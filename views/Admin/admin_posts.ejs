@@ -15,8 +15,8 @@
                             <!--* UPLOAD START -->
                             <div class="jumbotron">
                                 <h1 class="mt-4 text-center txt-primary pt-5"><b>Upload Posts</b></h1>
-                                <form action="http://localhost:3000/adminposts/upload" enctype="multipart/form-data"
-                                    method="post" autocomplete="off">
+                                <form id="uploadForm_post" enctype="multipart/form-data" method="post"
+                                    autocomplete="off">
                                     <table>
                                         <ul>
                                             <ol>
@@ -88,8 +88,7 @@
     <div class="modal" tabindex="-1" id="action_modal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="form_post" action="http://localhost:3000/adminposts/editpost"
-                    enctype="multipart/form-data">
+                <form method="post" id="form_post" enctype="multipart/form-data">
                     <div class="modal-header" id="dynamic_modal_title">
                         <h5 class="modal-title"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -136,6 +135,9 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script>
+        uploadFormPost = $('#uploadForm_post').prop('action', `${window.location.origin}/adminposts/editpost`)
+        formPost = $('#form_post').prop('action', `${window.location.origin}/adminposts/editpost`)
+
         function getCurrentDate() {
             var d = new Date()
             var date = d.getFullYear() + "-" +
@@ -167,7 +169,7 @@
                 $('#action_modal').modal('hide')
             })
 
-            var url = 'http://localhost:3000/adminposts/editpost'
+            var url = `${window.location.origin}/adminposts/editpost`
 
             $(document).on('click', '.edit', function (e) {
                 e.preventDefault()
@@ -199,7 +201,7 @@
                         data: { action: 'delete', id: id },
                         success: function () {
                             setTimeout(function () {
-                                window.location.href = 'http://localhost:3000/adminposts'
+                                window.location.reload()
                             }, 100)
                         }
                     })

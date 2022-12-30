@@ -100,8 +100,7 @@
     <div class="modal" tabindex="-1" id="action_modal">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" id="form_post" action="http://localhost:3000/adminBrgyOfficials/editofficials"
-                    enctype="multipart/form-data" autocomplete="off">
+                <form method="post" id="form_post" enctype="multipart/form-data" autocomplete="off">
                     <div class="modal-header" id="dynamic_modal_title">
                         <h5 class="modal-title">Edit Post</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -164,7 +163,7 @@
     <!-- <script src="javascripts/posts.js"></script> -->
     <script>
         $(document).ready(() => {
-            url = 'http://localhost:3000/adminBrgyOfficials/editofficials'
+            url = `${window.location.origin}/adminBrgyOfficials/editofficials`
             $(document).on('click', '#close_button', function () {
                 $('#form_post')[0].reset()
                 $('#action_button').attr('disabled', false)
@@ -189,6 +188,7 @@
                 }
             })
 
+            formPost = $('#form_post').prop('action', `${window.location.origin}/adminBrgyOfficials/editofficials`)
             // $('#action_button').on('click', () => {
             //     window.location.href = 'http://localhost:3000/adminbrgyofficials'
             //     // $.ajax({
