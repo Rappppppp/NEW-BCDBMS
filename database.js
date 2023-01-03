@@ -26,7 +26,7 @@ const con = mysql.createPool({ //createPool
 	host: 'sql.freedb.tech',
 	database: `freedb_CemboDB`,
 	user: 'freedb_arolatenci',
-	password: 'ckgj?M*@Fg3*7bF',
+	password: '5yYuaPN*&x49j5Z',
 	port: 3306,
 	charset: "utf8mb4"
 })
