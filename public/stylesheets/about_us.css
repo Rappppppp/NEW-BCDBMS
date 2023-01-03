@@ -24,6 +24,7 @@ body {
     box-sizing: border-box;
     position: relative;
     padding-bottom: 150px;
+    background: #6459fb;
     /* Height of footer */
     min-height: 100%;
 }

@@ -121,15 +121,18 @@ $.ajax({
             a().age <= 14 ? child.push(a().age) : ''
         }
 
+        const total_residents = document.getElementById('n_residents')
+        total_residents.innerHTML = residents.length
+
         // AGE
         const chart_age = document.getElementById('ages')
         new Chart(chart_age, {
             type: 'bar',
             data: {
-                labels: ['# of Residents', '14 and below', '15-17', '15-30', '18-59', '60 and above'],
+                labels: ['<=14', '15-17', '15-30', '18-59', '>=60'],
                 datasets: [{
                     label: '',
-                    data: [residents.length, child.length, teen.length, youngAdult.length, adult.length, senior.length],
+                    data: [child.length, teen.length, youngAdult.length, adult.length, senior.length],
                     backgroundColor: [
                         'rgba(255, 99,  132, 0.2)',
                         'rgba(54,  162, 235, 0.2)',

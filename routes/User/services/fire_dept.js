@@ -5,12 +5,14 @@ const passport = require('passport')
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get("/", checkAuthenticated, function (req, res, next) {
-  res.render('User/services/fire-dept', {
-    title: 'Fire Department',
-    name: req.user.first_name
+router.get("/",
+  checkAuthenticated,
+  (req, res, next) => {
+    res.render('User/services/fire-dept', {
+      title: 'Fire Department',
+      name: req.user.first_name
+    })
   })
-})
 
 router.post('/logout', function (req, res, next) {
   req.logout(function (err) {

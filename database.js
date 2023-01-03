@@ -7,22 +7,22 @@ mysql.createConnection({ multipleStatements: true });
 //* DATABASE NAME HERE
 // const createDB = require('./createDB')
 
-//* CREATES DATABASE FROM createDB.js 
+// //* CREATES DATABASE FROM createDB.js 
 // createDB.setDB()
 
-//* GET DB name
+// // * GET DB name
 // const db = createDB.name()
 
 // const con = mysql.createConnection({
-// 	host: 'localhost',
-// 	database: `${db}`,
+// 	host: '',
+// 	database: `BCDBMS`,
 // 	user: 'root',
 // 	password: ''
 // })
 
 const id_n_chars = 50
 
-const con = mysql.createPool({ //createConnection
+const con = mysql.createPool({ //createPool
 	host: 'sql.freedb.tech',
 	database: `freedb_CemboDB`,
 	user: 'freedb_arolatenci',
@@ -101,11 +101,11 @@ con.getConnection(function (error, connection) { //con.getConnection - con.conne
 		const makati_cards = `
 		CREATE TABLE IF NOT EXISTS makati_cards (	
 		user_id 		VARCHAR(${id_n_chars}),			   					
-		yellow 			BOOLEAN NOT NULL,			   					
-		blue 				BOOLEAN NOT NULL,			   						
-		white 			BOOLEAN NOT NULL,			   						
-		philhealth 	BOOLEAN NOT NULL,			   					
-		makatizen 	BOOLEAN NOT NULL,			   						
+		yellow 			BOOLEAN,			   					
+		blue 				BOOLEAN,			   						
+		white 			BOOLEAN,			   						
+		philhealth 	BOOLEAN,			   					
+		makatizen 	BOOLEAN,			   						
 		FOREIGN KEY (user_id) REFERENCES user_info(id)					
 		)`
 
@@ -154,9 +154,7 @@ con.getConnection(function (error, connection) { //con.getConnection - con.conne
 		// SET GLOBAL FOREIGN_KEY_CHECKS=0;
 		// `
 
-		// con.query(setFKChecks, function (err, result) {
-		// 	if (err) throw err
-		// })
+		// con.query(setFKChecks)
 
 		con.query(user_info, function (err, result) {
 			if (err) throw err

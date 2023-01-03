@@ -10,30 +10,34 @@ const passport = require('passport')
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get("/", authUser, checkAuthenticated, authRole('Admin'), (req, res, next) => {
-	async.parallel([
-		(cb) => {
-			database.query(`SELECT * FROM user_messages`, cb)
-		}
-	],
-		(err, data) => {
-			if (err) throw err
-			var messages = []
+router.get("/",
+	authUser,
+	checkAuthenticated,
+	authRole('Admin'),
+	(req, res, next) => {
+		async.parallel([
+			(cb) => {
+				database.query(`SELECT * FROM user_messages`, cb)
+			}
+		],
+			(err, data) => {
+				if (err) throw err
+				var messages = []
 
-			for (var j of data[0][0]) {
-				email = j.email
-				body = j.body
-				date = j.date
-				time = j.time
-				messages.push({ email, body, date, time })
-			}	// FILE LOC: routes/Admin/database
+				for (var j of data[0][0]) {
+					email = j.email
+					body = j.body
+					date = j.date
+					time = j.time
+					messages.push({ email, body, date, time })
+				}	// FILE LOC: routes/Admin/database
 
-			res.render('Admin/admin_table', {
-				title: 'Cembo Table Database',
-				messages: messages
+				res.render('Admin/admin_table', {
+					title: 'Cembo Table Database',
+					messages: messages
+				})
 			})
-		})
-})
+	})
 
 router.post('/deletemessage', (req, res, next) => {
 	var action = req.body.action_delete
@@ -46,38 +50,40 @@ router.post('/deletemessage', (req, res, next) => {
 	}
 })
 
-router.post("/action", (request, response, next) => {
+router.post("/action", (req, res, next) => {
 	const table = "user_info"
-	var action = request.body.action
+	var action = req.body.action
 
 	if (action == 'fetch') {
 		var query = `SELECT * FROM ${table} WHERE role!='Admin'`
 
 		database.query(query, (error, data) => {
-			response.json({
+			res.json({
 				data: data
 			})
 		})
 	}
 
 	if (action == 'Add') {
-		var id = request.body.id
-		var first_name = request.body.first_name
-		var last_name = request.body.last_name
-		var middle_name = request.body.middle_name
-		var password = request.body.password
-		var gender = request.body.gender
-		var dob = request.body.dob
-		var age = request.body.age
-		var pob = request.body.pob
-		var civil_status = request.body.civil_status
-		var religion = request.body.religion
+		var id = req.body.id
+		var first_name = req.body.first_name
+		var last_name = req.body.last_name
+		var middle_name = req.body.middle_name
+		var role = req.body.role
+		var password = req.body.password
+		var gender = req.body.gender
+		var dob = req.body.dob
+		var age = req.body.age
+		var pob = req.body.pob
+		var civil_status = req.body.civil_status
+		var religion = req.body.religion
 
 		console.log(dob)
 
 		var query = `
 		INSERT INTO ${table} (
 			id,
+			role,
 			first_name, 
 			last_name, 
 			middle_name, 
@@ -91,6 +97,7 @@ router.post("/action", (request, response, next) => {
 		) 
 		VALUES (
 			"${id}",
+			"${role}",
 			"${first_name}", 
 			"${last_name}", 
 			"${middle_name}", 
@@ -105,7 +112,7 @@ router.post("/action", (request, response, next) => {
 
 		database.query(query, (error, data) => {
 
-			response.json({
+			res.json({
 				message: 'Data Added'
 			})
 		})
@@ -113,34 +120,34 @@ router.post("/action", (request, response, next) => {
 
 	// EDIT FUNCTION
 	if (action == 'fetch_single') {
-		var id = request.body.id
+		var id = req.body.id
 		var query = `SELECT * FROM ${table} WHERE id ="${id}"`
 
 		database.query(query, (error, data) => {
 
-			response.json(data[0]);
+			res.json(data[0]);
 		})
 	}
 
 	if (action == 'Edit') {
-		var id = request.body.id
-		var first_name = request.body.first_name
-		var last_name = request.body.last_name
-		var middle_name = request.body.middle_name
-		var password = request.body.password
-		var gender = request.body.gender
-		var dob = request.body.dob
-		var age = request.body.age
-		var pob = request.body.pob
-		var religion = request.body.religion
-		var civil_status = request.body.civil_status
+		var id = req.body.id
+		var role = req.body.role
+		var first_name = req.body.first_name
+		var last_name = req.body.last_name
+		var middle_name = req.body.middle_name
+		var gender = req.body.gender
+		var dob = req.body.dob
+		var age = req.body.age
+		var pob = req.body.pob
+		var religion = req.body.religion
+		var civil_status = req.body.civil_status
 
 		var query = `
 		UPDATE ${table} SET 
+		role = "${role}",
 		first_name = "${first_name}", 
 		last_name = "${last_name}", 
 		middle_name = "${middle_name}",
-		password = "${password}",
 		gender = "${gender}",
 		dob = "${dob}",
 		age = "${age}",
@@ -150,43 +157,42 @@ router.post("/action", (request, response, next) => {
 		WHERE id = "${id}"
 		`
 
+		console.log(role, first_name, middle_name, gender, dob, age, pob, religion, civil_status, id)
+		console.log(query)
+
 		database.query(query, (error, data) => {
-			response.json({
+			res.json({
 				message: 'Data Edited'
 			})
 		})
 	}
 
 	if (action == 'delete') {
-		var id = request.body.id
-		var query = `DELETE FROM ${table} WHERE id="${id}"`
+		var id = req.body.id
 
-		//* IF THIS DOESN'T WORK: SET FOREIGN_KEY_CHECKS=0
-		var tryquery = `
-		DELETE ui, ci, hi, ii, mi, mc FROM 
+		var query = `
+		DELETE ui, ci, hi, ii, mi, mc FROM
 		user_info AS ui JOIN
-		contact_info AS ci
-        	ON ui.id = ci.user_id
+			contact_info AS ci
+						ON ui.id = ci.user_id
 		JOIN
-        	household_info AS hi
-            ON ui.id = hi.user_id
-        JOIN
-        	income_info AS ii
-            ON ui.id = ii.user_id
-       	JOIN 
-        	makati_info AS mi
-            ON ui.id = mi.user_id
-        JOIN 
-        	makati_cards AS mc
-            ON ui.id = mc.user_id
-        
-        WHERE id="${id}"
+			household_info AS hi
+				ON ui.id = hi.user_id
+		JOIN
+			income_info AS ii
+				ON ui.id = ii.user_id
+		JOIN
+			makati_info AS mi
+				ON ui.id = mi.user_id
+		JOIN
+			makati_cards AS mc
+				ON ui.id = mc.user_id
+		
+		WHERE id="${id}";
 		`
-
-		console.log(tryquery)
-
-		database.query(tryquery, (error, data) => {
-			response.json({
+		console.log(query)
+		database.query(query, () => {
+			res.json({
 				message: 'Data Deleted'
 			})
 		})
@@ -195,8 +201,7 @@ router.post("/action", (request, response, next) => {
 	// Multiple Delete
 	if (action == 'delete_id') {
 		ids = req.body.data
-		ParsedID = ids.substring(1, ids.length - 1);
-
+		ParsedID = ids.substring(1, ids.length - 1)
 		console.log(ParsedID)
 		if (ParsedID === '') {
 			res.json({
@@ -204,7 +209,8 @@ router.post("/action", (request, response, next) => {
 			})
 		}
 		else {
-			DELETE = `DELETE ui, ci, hi, ii, mi, mc FROM 
+			query = `
+			DELETE ui, ci, hi, ii, mi, mc FROM 
 			user_info AS ui JOIN
 			contact_info AS ci
 						ON ui.id = ci.user_id
@@ -223,7 +229,7 @@ router.post("/action", (request, response, next) => {
 
 					WHERE id IN (${ParsedID})`
 
-			database.query(DELETE, (error, data) => {
+			database.query(query, () => {
 				res.json({
 					message: 'Data Deleted'
 				})

@@ -99,8 +99,6 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			"${provincial_address}"
 		)`
 
-		console.log(contact_number)
-
 		// //* MAKATI INFO
 		var isVoter = req.body.isVoter
 		var isHead = req.body.isHead
@@ -134,6 +132,8 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			"${len_stay_cembo}",
 			"${len_stay_curr}"
 		)`
+
+		console.log(makati_info)
 
 		var household = req.body.Household
 		var families_household = req.body.Families
@@ -180,7 +180,6 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			"${makatizen}",
 			"${philhealth}"
 		)`
-
 
 		// //* INCOME INFO
 		var educ = req.body.educ

@@ -5,8 +5,10 @@ const passport = require('passport')
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get("/", checkAuthenticated, function (req, res, next) {
-  servicesDesc = `Barangay serves as the
+router.get("/",
+  checkAuthenticated,
+  (req, res, next) => {
+    servicesDesc = `Barangay serves as the
   primary planning and implementing unit of government policies, plans,
   programs, projects, and
   activities in the community, and as a forum wherein the collective views of
@@ -14,12 +16,12 @@ router.get("/", checkAuthenticated, function (req, res, next) {
   expressed, crystallized and considered, and where disputes may be amicably
   settled.`
 
-  res.render('User/services/services', {
-    title: 'Services',
-    services: servicesDesc,
-    name: req.user.first_name
+    res.render('User/services/services', {
+      title: 'Services',
+      services: servicesDesc,
+      name: req.user.first_name
+    })
   })
-})
 
 router.post('/logout', function (req, res, next) {
   req.logout(function (err) {

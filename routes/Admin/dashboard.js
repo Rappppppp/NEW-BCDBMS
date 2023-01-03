@@ -10,117 +10,121 @@ const passport = require('passport')
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get("/", authUser, checkAuthenticated, authRole('Admin'), function (req, res, next) {
-    async.parallel([
-        (cb) => { database.query(`SELECT * FROM user_messages`, cb) }
-    ], (err, data) => {
-        if (err) throw err
-        var messages = []
+router.get("/",
+    authUser,
+    checkAuthenticated,
+    authRole('Admin'),
+    (req, res, next) => {
+        async.parallel([
+            (cb) => { database.query(`SELECT * FROM user_messages`, cb) }
+        ], (err, data) => {
+            if (err) throw err
+            var messages = []
 
-        for (var i of data[0][0]) {
-            email = i.email
-            body = i.body
-            date = i.date
-            time = i.time
-            messages.push({ email, body, date, time })
-        }
+            for (var i of data[0][0]) {
+                email = i.email
+                body = i.body
+                date = i.date
+                time = i.time
+                messages.push({ email, body, date, time })
+            }
 
-        res.render('Admin/admin_dashboard', {
-            title: 'Cembo Admin Dashboard',
-            messages: messages
+            res.render('Admin/admin_dashboard', {
+                title: 'Cembo Admin Dashboard',
+                messages: messages
+            })
         })
     })
-})
 
-router.post("/n_households", function (request, response, next) {
+router.post("/n_households", function (req, res, next) {
 
     var households = `SELECT household FROM household_info`;
 
     database.query(households, function (error, households) {
 
-        response.json({
+        res.json({
             data: households
         })
     })
 })
 
-router.post("/n_families", function (request, response, next) {
+router.post("/n_families", function (req, res, next) {
 
     var families = `SELECT families_household FROM household_info`;
 
     database.query(families, function (error, families) {
 
-        response.json({
+        res.json({
             data: families
         })
     })
 })
 
 
-router.post("/gender", function (request, response, next) {
+router.post("/gender", function (req, res, next) {
 
     var gender = `SELECT gender FROM user_info`;
 
     database.query(gender, function (error, gender) {
 
-        response.json({
+        res.json({
             data: gender
         })
     })
 })
 
-router.post("/age", function (request, response, next) {
+router.post("/age", function (req, res, next) {
 
     var age = `SELECT age FROM user_info`;
 
     database.query(age, function (error, age) {
-        response.json({
+        res.json({
             data: age
         })
     })
 })
 
-router.post("/civil_status", function (request, response, next) {
+router.post("/civil_status", function (req, res, next) {
 
     var status = `SELECT civil_status FROM user_info`;
 
     database.query(status, function (error, civil_status) {
-        response.json({
+        res.json({
             data: civil_status
         })
     })
 
 })
 
-router.post("/religion", function (request, response, next) {
+router.post("/religion", function (req, res, next) {
 
     var religion = `SELECT religion FROM user_info`;
 
     database.query(religion, function (error, religion) {
-        response.json({
+        res.json({
             data: religion
         })
     })
 })
 
-router.post("/cards", function (request, response, next) {
+router.post("/cards", function (req, res, next) {
 
     var cards = `SELECT * FROM makati_cards`;
 
     database.query(cards, function (error, cards) {
-        response.json({
+        res.json({
             data: cards
         })
     })
 })
 
 
-router.post("/social_sector", function (request, response, next) {
+router.post("/social_sector", function (req, res, next) {
 
     var ss = `SELECT social_sector FROM makati_info`;
 
     database.query(ss, function (error, ss) {
-        response.json({
+        res.json({
             data: ss
         })
     })
@@ -137,12 +141,12 @@ router.post('/deletemessage', (req, res, next) => {
     }
 })
 
-router.post("/vaccine", function (request, response, next) {
+router.post("/vaccine", function (req, res, next) {
 
     var vaccine = `SELECT isVaccinated FROM makati_info`;
 
     database.query(vaccine, function (error, vaccine) {
-        response.json({
+        res.json({
             data: vaccine
         })
     })
