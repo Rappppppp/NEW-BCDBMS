@@ -48,7 +48,7 @@ router.get("/",
             }
             res.render('Admin/admin_officials', {
                 title: 'Brgy. Officials',
-                fname: 'asd',//req.user.first_name,
+                fname: req.user.first_name,
                 officials: higher_officials,
                 messages: messages
             })

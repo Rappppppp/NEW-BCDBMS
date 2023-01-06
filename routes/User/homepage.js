@@ -13,7 +13,8 @@ router.get("/",
 		async.parallel([
 			(cb) => { database.query(`SELECT * FROM posts`, cb) },
 			(cb) => { database.query(`SELECT * FROM officials WHERE position ='Barangay Captain'`, cb) },
-			(cb) => { database.query(`SELECT * FROM officials WHERE position !='Barangay Captain'`, cb) }
+			(cb) => { database.query(`SELECT * FROM officials WHERE position !='Barangay Captain'`, cb) },
+			(cb) => { database.query(`SELECT * FROM carousel`, cb) }
 		], (err, data) => {
 			if (err) throw err
 
@@ -21,6 +22,7 @@ router.get("/",
 			var arr_posts = []
 			var brgy_captain = []
 			var brgy_officials = []
+			var carousel = []
 
 			for (var i of data[0][0]) {
 				title = i.title
@@ -47,13 +49,19 @@ router.get("/",
 				brgy_officials.push({ position, name, image })
 			}
 
+			for (var j of data[3][0]) {
+				var image = j.image
+				carousel.push({ image })
+			}
+
 			res.render('User/homepage', {
 				title: 'Homepage',
 				fname: req.user.first_name,
 				lname: req.user.last_name,
 				posts: arr_posts,
 				brgy_captain: brgy_captain,
-				officials: brgy_officials
+				officials: brgy_officials,
+				carousel: carousel
 			})
 		})
 	})

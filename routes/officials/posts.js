@@ -11,12 +11,13 @@ const passport = require('passport')
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get("/", authUser, 
+router.get("/", 
+authUser, 
 checkAuthenticated, 
-authRole('Admin'), 
+authRole(['Admin', 'Barangay Official']), 
 (req, res, next) => {
     async.parallel([
-        (cb) => { database.query(`SELECT * FROM posts`, cb) },
+        (cb) => { database.query(`SELECT * FROM posts WHERE user_id="${req.user.id}"`, cb) },
         (cb) => { database.query(`SELECT * FROM user_messages`, cb) }
     ], (err, data) => {
         if (err) throw err
@@ -43,7 +44,7 @@ authRole('Admin'),
             messages.push({ email, name, body, date, time })
         }
 
-        res.render('Admin/admin_posts', {
+        res.render('officials/posts', {
             title: 'Cembo Admin Posts',
             posts: arr_post,
             fname: req.user.first_name,
@@ -67,14 +68,14 @@ router.post('/upload', upload.single('image_post'), (req, res) => {
     var id = req.user.user_id
     var title = req.body.title_post
     var body = req.body.body_post
-    var author = `Admin ${req.user.first_name} ${req.user.last_name}`
+    var author = `${req.user.first_name} ${req.user.last_name}`
     var date = req.body.date_post
     var time = req.body.time_post
     var image = req.file.buffer.toString('base64')
     console.log(id)
     var query_post = `INSERT INTO posts VALUES(NULL, "${id}", "${title}", "${body}", "${author}", "${date}", "${time}", "${image}")`
     database.query(query_post, () => {
-        res.redirect('/adminposts')
+        res.redirect('/officialposts')
     })
 
 })
@@ -97,7 +98,7 @@ router.post('/editpost', upload.single('update-image'), (req, res) => {
     if (action == 'delete') {
         var id = req.body.id
 
-        var query = `DELETE FROM posts  WHERE id ="${id}"`
+        var query = `DELETE FROM posts WHERE id ="${id}"`
 
         database.query(query, (error, data) => {
             res.json({
@@ -131,7 +132,7 @@ router.post('/editpost', upload.single('update-image'), (req, res) => {
             `
             database.query(query, (error, data) => {
                 res.json(
-                    res.redirect('/adminposts')
+                    res.redirect('/officialposts')
                 )
             })
         }
@@ -148,7 +149,7 @@ router.post('/editpost', upload.single('update-image'), (req, res) => {
             `
             database.query(query, (error, data) => {
                 res.json(
-                    res.redirect('/adminposts')
+                    res.redirect('/officialposts')
                 )
             })
         }

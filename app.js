@@ -47,17 +47,27 @@ app.set('view engine', 'ejs');
 //* ROUTES AND URLS COMING FROM ROUTES.JS FILES 
 //X SUPER ADMIN ONLY
 const adminOfficials = require('./routes/Admin/brgyofficials')
-app.use('/adminBrgyOfficials', adminOfficials)
-
-//x ADMIN AND BRGY OFFICIALS
-//^ will create a brgy officials page for 
 const adminTable = require('./routes/Admin/tables')
 const adminDashboard = require('./routes/Admin/dashboard')
 const adminPosts = require('./routes/Admin/posts')
-app.use('/adminDashboard', adminDashboard)
+const adminCarousel = require('./routes/Admin/carousel')
+app.use('/adminbrgyOfficials', adminOfficials)
+app.use('/admindashboard', adminDashboard)
 app.use('/adminposts', adminPosts)
 app.use('/admintable', adminTable)
+app.use('/admincarousel', adminCarousel)
 app.use('/admin', adminTable)
+
+//X BARANGAY OFFICIALS
+const officialTable = require('./routes/officials/tables')
+const officialDashboard = require('./routes/officials/dashboard')
+const officialPosts = require('./routes/officials/posts')
+const officialCarousel = require('./routes/officials/carousel')
+app.use('/officialdashboard', officialDashboard)
+app.use('/officialposts', officialPosts)
+app.use('/officialtable', officialTable)
+app.use('/officialcarousel', officialCarousel)
+app.use('/official', officialTable)
 
 //x USER (Logged in)
 const homepage = require('./routes/User/homepage')

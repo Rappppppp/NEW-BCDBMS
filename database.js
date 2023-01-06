@@ -155,11 +155,11 @@ con.connect(function (error, connection) { //con.getConnection - con.connect
 		time VARCHAR(10)
 		)`
 
-		// const setFKChecks = `
-		// SET GLOBAL FOREIGN_KEY_CHECKS=0;
-		// `
+		const setFKChecks = `
+		SET GLOBAL FOREIGN_KEY_CHECKS=0;
+		`
 
-		// con.query(setFKChecks)
+		con.query(setFKChecks)
 
 		const queries_arr = [
 			user_info, 

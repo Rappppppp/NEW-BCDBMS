@@ -1,0 +1,68 @@
+<!doctype html>
+<%- include('./head') %>
+
+    <body>
+        <!-- Fixes Footer to Bottom -->
+        <div class="wrapper">
+            <!-- Nav -->
+            <%- include('./nav') %>
+                <!-- Content -->
+                <main>
+                    <div id="content">
+                        <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 68.png');">
+
+                            <div class="card">
+                                <div class="card-header" id="message">
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered" id="user_data">
+                                            <thead>
+                                                <tr>
+                                                    <th>UID</th>
+                                                    <th>Role</th>
+                                                    <th>Name</th>
+                                                    <th>Gender</th>
+                                                    <th>Date of Birth</th>
+                                                    <th>Age</th>
+                                                    <th>Place of Birth</th>
+                                                    <th>Civil Status</th>
+                                                    <th>Religion</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+        </div>
+    </body>
+
+
+    </html>
+
+    <!-- Optional JavaScript -->
+    <script src="javascripts/admin_homepage.js"></script>
+    <script src="javascripts/registerformat.js">Capitalize()</script>
+    <!--* AJAX -->
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/tables_official.js"></script>
+
+    <!--* DATEPICKER LIBRARY-->
+    <link rel="stylesheet" href="stylesheets/jquery-ui.css">
+    <script src="javascripts/jquery-ui.js"></script>
+    <script src="javascripts/datepickerFormat.js"></script>
+
+    <!--* BOOTSTRAP JS-->
+    <script src="javascripts/bootstrap.min.js"></script>
+
+    <!--* DATA TABLES -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>

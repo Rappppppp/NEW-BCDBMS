@@ -39,59 +39,39 @@
                         </div>
 
                         <div class="row" style="display: flex;justify-content: center;">
+                            <% brgy_captain.forEach((captain)=>{ %>
                             <div class="col-lg-4 col-md-4 col-sm-12">
                                 <div class="card brgy-officials-item" id="portrait-holder">
-                                    <img class="card-img-top" src="images/Punong-Barangay.jpg"
-                                        style="background-color: var(--secondary-color)">
+                                    <img class="card-img-top" src="data:image/png;base64,<%= captain.image %>"
+                                    style="background-color: var(--secondary-color)"
+                                    onerror="javascript:this.src='images/blank_profile_pic.webp'">
                                     <div class="card-body pt-0">
                                         <div class="container" id="namespace">
-                                            <h4>Punong Barangay</h4>
+                                            <h4><%= captain.position %></h4>
                                         </div>
-                                        <h3>Romeo B. Millo DMD</h3>
+                                        <h3><%= captain.name %></h3>
                                     </div>
                                 </div>
                             </div>
+                            <% }) %>
                         </div>
 
                         <div class="row lg-mt-5 md-mt-5 sm-mt-0">
+                            <% officials.forEach((official)=>{ %>
                             <div class="col-lg-4 col-md-4 col-sm-12 mt-sm-5">
                                 <div class="card brgy-officials-item" id="portrait-holder">
-                                    <img class="card-img-top" src="images/Bong-Ariones.jpg"
-                                        style="background-color: var(--secondary-color)">
+                                    <img class="card-img-top" src="data:image/png;base64,<%= official.image %>"
+                                    style="background-color: var(--secondary-color)"
+                                    onerror="javascript:this.src='images/blank_profile_pic.webp'">
                                     <div class="card-body pt-0">
                                         <div class="container" id="namespace">
-                                            <h4>Barangay Kagawad</h4>
+                                            <h4><%= official.position %></h4>
                                         </div>
-                                        <h3>Joel Bong M. Ariones</h3>
-    
+                                        <h3><%= official.name %></h3>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-12 mt-sm-5">
-                                <div class="card brgy-officials-item" id="portrait-holder">
-                                    <img class="card-img-top" src="images/Gary-Valdez.jpg"
-                                        style="background-color: var(--secondary-color)">
-                                    <div class="card-body pt-0">
-                                        <div class="container" id="namespace">
-                                            <h4>Barangay Kagawad</h4>
-                                        </div>
-                                        <h3>Gary Lester A. Valdez</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-12 mt-sm-5">
-                                <div class="card brgy-officials-item" id="portrait-holder">
-                                    <img class="card-img-top" src="images/Paul-Magpantay.jpg"
-                                        style="background-color: var(--secondary-color)">
-                                    <div class="card-body pt-0">
-                                        <div class="container" id="namespace">
-                                            <h4>Barangay Kagawad</h4>
-                                        </div>
-                                        <h3>Paul Leonardo C. Magpantay</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <% }) %>
                     </div>
                 </section>
                 <!-- ***** Testimonials Ends ***** -->

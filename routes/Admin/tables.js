@@ -177,23 +177,23 @@ router.post("/action", (req, res, next) => {
 		var id = req.body.id
 
 		var query = `
-		DELETE ui, ci, hi, ii, mi, mc FROM
-		user_info AS ui JOIN
-			contact_info AS ci
+		DELETE ui, ci, hi, ii, mi, mc FROM user_info AS ui 
+		JOIN
+						contact_info AS ci
 						ON ui.id = ci.user_id
 		JOIN
-			household_info AS hi
-				ON ui.id = hi.user_id
+						household_info AS hi
+										ON ui.id = hi.user_id
 		JOIN
-			income_info AS ii
-				ON ui.id = ii.user_id
+						income_info AS ii
+										ON ui.id = ii.user_id
 		JOIN
-			makati_info AS mi
-				ON ui.id = mi.user_id
+						makati_info AS mi
+										ON ui.id = mi.user_id
 		JOIN
-			makati_cards AS mc
-				ON ui.id = mc.user_id
-		
+						makati_cards AS mc
+										ON ui.id = mc.user_id
+
 		WHERE id="${id}";
 		`
 		console.log(query)

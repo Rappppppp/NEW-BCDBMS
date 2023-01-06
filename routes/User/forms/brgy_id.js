@@ -18,6 +18,7 @@ router.get('/',
       const form = pdfDoc.getForm()
 
       // Get all fields in the PDF by their names
+      const date = form.getTextField('Date')
       const fname = form.getTextField('First Name')
       const lname = form.getTextField('Last Name')
       const mname = form.getTextField('Middle Name')
@@ -29,7 +30,15 @@ router.get('/',
       const gender = form.getTextField('Gender')
       const cStatus = form.getTextField('Civil Status')
 
+      function dateFormat(date) {
+        return ("0" + (date.getMonth() + 1)).slice(-2)+ "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear(); 
+      }     
+      
+      var thisDate = new Date()
+      var birthDate = new Date(req.user.dob)
+      
       // Fill in the basic info fields
+      date.setText(`${dateFormat(thisDate)}`)
       fname.setText(`${req.user.first_name}`)
       lname.setText(`${req.user.last_name}`)
       mname.setText(`${req.user.middle_name}`)
@@ -37,7 +46,7 @@ router.get('/',
       address_province.setText(`${req.user.provincial_address}`)
       contactNo.setText(`${req.user.contact_number}`)
       lengthStay.setText(`${req.user.len_stay_cembo}`)
-      dob.setText(`${req.user.dob}`)
+      dob.setText(`${dateFormat(birthDate)}`)
       gender.setText(`${req.user.gender}`)
       cStatus.setText(`${req.user.civil_status}`)
 
@@ -46,12 +55,11 @@ router.get('/',
       // Set the appropriate content type
       res.setHeader('Content-Type', 'application/pdf')
   
-      const fileName = `BARANGAY ID.pdf - ${req.user.first_name} ${req.user.last_name}`
+      const fileName = `BARANGAY ID - ${req.user.first_name} ${req.user.last_name}.pdf`
       await writeFile(`public/filledForms/${fileName}`, pdfBytes);
 
       const filePath = path.join(__dirname, '..', '..', '..', `/public/filledForms/${fileName}`)
       res.sendFile(filePath)
-
     }
     catch (err){
       console.log(err)

@@ -9,11 +9,18 @@ function authUser(req, res, next) {
 
 function authRole(role) {
     return (req, res, next) => {
-        if (req.user.role !== role) {
+        if(role.includes(req.user.role)){
+            next()
+        } 
+        else {
             res.status(401)
             return res.redirect('/404')
         }
-        next()
+        // if (req.user.role !== role) {
+        //     res.status(401)
+        //     return res.redirect('/404')
+        // }
+        // next()
     }
 }
 

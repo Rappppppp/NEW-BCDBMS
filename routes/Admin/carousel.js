@@ -11,7 +11,11 @@ const passport = require('passport')
 router.use(passport.initialize())
 router.use(passport.session())
 
-router.get("/", authUser, checkAuthenticated, authRole('Admin'), (req, res, next) => {
+router.get("/", 
+    authUser, 
+    checkAuthenticated, 
+    authRole('Admin'), 
+    (req, res, next) => {
     async.parallel([
         (cb) => { database.query(`SELECT * FROM carousel`, cb) },
         (cb) => { database.query(`SELECT * FROM user_messages`, cb) }
@@ -24,10 +28,11 @@ router.get("/", authUser, checkAuthenticated, authRole('Admin'), (req, res, next
             id = i.id
             title = i.title
             body = i.body
+            author = i.author
             date = i.date
             time = i.time
             image = i.image
-            arr_post.push({ id, title, body, date, time, image })
+            arr_post.push({ id, title, body, author, date, time, image })
         }
 
         for (var j of data[1][0]) {
@@ -39,10 +44,11 @@ router.get("/", authUser, checkAuthenticated, authRole('Admin'), (req, res, next
             messages.push({ email, name, body, date, time })
         }
 
-        res.render('Admin/admin_posts', {
+        res.render('Admin/admin_carousel', {
             title: 'Cembo Admin Posts',
             posts: arr_post,
             fname: req.user.first_name,
+            lname: req.user.last_name,
             messages: messages
         })
     })
@@ -56,7 +62,7 @@ const limits = {
 
 var upload = multer({ storage: multer.memoryStorage(), limits }) //, limits -add this inside array if needed
 
-router.post('/upload', upload.single('image_post'), (req, res) => {
+router.post('/upload_carousel', upload.single('image_post'), (req, res) => {
 
     //* UPLOAD POSTS START
     var id = req.user.id
@@ -67,10 +73,10 @@ router.post('/upload', upload.single('image_post'), (req, res) => {
     var time = req.body.time_post
     var image = req.file.buffer.toString('base64')
 
-    var query_post = `INSERT INTO posts VALUES(NULL, "${id}", "${title}", "${body}", "${author}", "${date}", "${time}", "${image}")`
-    
+    var query_post = `INSERT INTO carousel VALUES(NULL, "${id}", "${title}", "${body}", "${author}", "${date}", "${time}", "${image}")`
+    console.log(query_post)
     database.query(query_post, () => {
-        res.redirect('/adminposts')
+        res.redirect('/admincarousel')
     })
 
 })
@@ -87,13 +93,13 @@ router.post('/deletemessage', (req, res, next) => {
     }
 })
 
-router.post('/editpost', upload.single('update-image'), (req, res) => {
+router.post('/edit_carousel', upload.single('update-image'), (req, res) => {
     var action = req.body.action
 
     if (action == 'delete') {
         var id = req.body.id
 
-        var query = `DELETE FROM posts  WHERE id ="${id}"`
+        var query = `DELETE FROM carousel WHERE id ="${id}"`
 
         database.query(query, (error, data) => {
             res.json({
@@ -104,7 +110,7 @@ router.post('/editpost', upload.single('update-image'), (req, res) => {
 
     if (action == 'fetch_single') {
         var id = req.body.id
-        var query = `SELECT * FROM posts WHERE id ="${id}"`
+        var query = `SELECT * FROM carousel WHERE id ="${id}"`
         database.query(query, (error, data) => {
             res.json(data[0]);
         })
@@ -119,7 +125,7 @@ router.post('/editpost', upload.single('update-image'), (req, res) => {
             var update_image = req.file.buffer.toString('base64')
 
             var query = `
-            UPDATE posts SET 
+            UPDATE carousel SET 
             title 	 = "${title}", 
             body 	 = "${body}",
             image 	 = "${update_image}"
@@ -127,7 +133,7 @@ router.post('/editpost', upload.single('update-image'), (req, res) => {
             `
             database.query(query, (error, data) => {
                 res.json(
-                    res.redirect('/adminposts')
+                    res.redirect('/admincarousel')
                 )
             })
         }
@@ -137,14 +143,14 @@ router.post('/editpost', upload.single('update-image'), (req, res) => {
             var body = req.body.body_post
 
             var query = `
-            UPDATE posts SET 
+            UPDATE carousel SET 
             title 	 = "${title}", 
             body 	 = "${body}"
             WHERE id = "${id}"
             `
             database.query(query, (error, data) => {
                 res.json(
-                    res.redirect('/adminposts')
+                    res.redirect('/admincarousel')
                 )
             })
         }

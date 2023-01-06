@@ -11,15 +11,7 @@ router.get("/",
         res.render('User/forms', {
             title: 'Forms',
             fname: req.user.first_name,
-            lname: req.user.last_name,
-            mname: req.user.middle_name,
-            address_curr: req.user.physical_address,
-            address_prov: req.user.provincial_address,
-            contact_number: req.user.contact_number,
-            length_stay: req.user.len_stay_cembo,
-            dob: req.user.dob,
-            gender: req.user.gender,
-            civil_status: req.user.civil_status
+            lname: req.user.last_name
         })
     })
 
