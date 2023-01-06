@@ -6,11 +6,12 @@ router.use(passport.initialize())
 router.use(passport.session())
 
 router.get("/",
-    // checkAuthenticated,
+    checkAuthenticated,
     (req, res, next) => {
         res.render('User/aboutus', {
             title: 'About us',
-            name: 'asd' //req.user.first_name d
+            fname: req.user.first_name,
+            lname: req.user.last_name
         })
     })
 

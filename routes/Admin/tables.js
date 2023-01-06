@@ -25,15 +25,17 @@ router.get("/",
 				var messages = []
 
 				for (var j of data[0][0]) {
+					var name = j.name
 					email = j.email
 					body = j.body
 					date = j.date
 					time = j.time
-					messages.push({ email, body, date, time })
-				}	// FILE LOC: routes/Admin/database
+					messages.push({ email, name, body, date, time })
+				}
 
 				res.render('Admin/admin_table', {
 					title: 'Cembo Table Database',
+					fname: req.user.first_name,
 					messages: messages
 				})
 			})
@@ -84,6 +86,7 @@ router.post("/action", (req, res, next) => {
 		INSERT INTO ${table} (
 			id,
 			role,
+			status,
 			first_name, 
 			last_name, 
 			middle_name, 
@@ -98,6 +101,7 @@ router.post("/action", (req, res, next) => {
 		VALUES (
 			"${id}",
 			"${role}",
+			"1",
 			"${first_name}", 
 			"${last_name}", 
 			"${middle_name}", 
@@ -141,10 +145,12 @@ router.post("/action", (req, res, next) => {
 		var pob = req.body.pob
 		var religion = req.body.religion
 		var civil_status = req.body.civil_status
+		var status = req.body.isActiveForm
 
 		var query = `
 		UPDATE ${table} SET 
 		role = "${role}",
+		isActive = "${status}",
 		first_name = "${first_name}", 
 		last_name = "${last_name}", 
 		middle_name = "${middle_name}",

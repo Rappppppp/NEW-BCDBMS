@@ -9,14 +9,32 @@ router.use(passport.initialize())
 router.use(passport.session())
 
 router.get('/', checkNotAuthenticated, (req, res) => {
-  database.query(`SELECT * FROM user_info`, (err, UsersData) => {
+  loginQuery = `
+  SELECT * FROM
+  user_info AS ui JOIN
+    contact_info AS ci
+          ON ui.id = ci.user_id
+  JOIN
+    household_info AS hi
+      ON ui.id = hi.user_id
+  JOIN
+    income_info AS ii
+      ON ui.id = ii.user_id
+  JOIN
+    makati_info AS mi
+      ON ui.id = mi.user_id
+  JOIN
+    makati_cards AS mc
+      ON ui.id = mc.user_id;
+  `
+  
+  database.query(loginQuery, (err, UsersData) => {
     passport_init(
       passport,
       name => UsersData.find(c => c.id === name),
       id => UsersData.find(c => c.id === id)
     )
   })
-  // RA57082912
   res.render('login', { title: 'Login' })
 })
 

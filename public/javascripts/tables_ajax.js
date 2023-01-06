@@ -39,6 +39,7 @@ function load_data() {
                       <td>${data.data[i].pob}</td>
                       <td>${data.data[i].civil_status}</td>
                       <td>${data.data[i].religion}</td>
+                      <td id="isActive" class="${data.data[i].isActive == 1 ? 'alert alert-success' : 'alert alert-danger'}">${data.data[i].isActive == 1 ? 'Active' : 'Inactive'}</td>
                       <td>
                           <button type="button" class="btn btn-warning btn-sm edit" data-id="${data.data[i].id}">Edit</button>
                           
@@ -136,6 +137,7 @@ $(document).on('click', '.edit', function () {
       $('#age').val(data.age)
       $('#pob').val(data.pob)
       $('#civil_status').val(data.civil_status)
+      $('#isActiveForm').val(data.isActive)
       $('#religion').val(data.religion)
     }
   })
@@ -159,7 +161,6 @@ $(document).on('click', '.delete', function () {
     })
   }
 })
-
 
 // Multiple Delete
 idArr = []

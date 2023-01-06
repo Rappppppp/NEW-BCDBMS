@@ -25,11 +25,12 @@ router.get("/",
 			for (var i of data[0][0]) {
 				title = i.title
 				body = i.body
+				author = i.author
 				date = i.date
 				time = i.time
 				image = i.image
 
-				arr_posts.push({ title, body, date, time, image })
+				arr_posts.push({ title, body, author, date, time, image })
 			}
 
 			for (var k of data[1][0]) {
@@ -48,7 +49,8 @@ router.get("/",
 
 			res.render('User/homepage', {
 				title: 'Homepage',
-				name: req.user.first_name,
+				fname: req.user.first_name,
+				lname: req.user.last_name,
 				posts: arr_posts,
 				brgy_captain: brgy_captain,
 				officials: brgy_officials
@@ -67,15 +69,15 @@ router.post("/sendmessage", function (req, res, next) {
 	var action = req.body.action;
 
 	if (action == 'SendMessage') {
-		const email = req.body.email
+		const name = `${req.user.first_name} ${req.user.last_name}`
 		const message = req.body.message
 		const date = req.body.date_message
 		const time = req.body.time_message
 
-		query = `INSERT INTO user_messages(id, email, body, date, time)
-		VALUES(NULL, "${email}", "${message}", "${date}", "${time}")`
+		query = `INSERT INTO user_messages(id, name, body, date, time)
+		VALUES(NULL, "${name}", "${message}", "${date}", "${time}")`
 
-		database.query(query, (err, data) => {
+		database.query(query, () => {
 			res.json({
 				message: 'Message Sent!'
 			})

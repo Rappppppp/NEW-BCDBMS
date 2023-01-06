@@ -39,14 +39,16 @@ router.get("/",
             }
 
             for (var j of data[1][0]) {
+                var name = j.name
                 email = j.email
                 body = j.body
                 date = j.date
                 time = j.time
-                messages.push({ email, body, date, time })
+                messages.push({ email, name, body, date, time })
             }
             res.render('Admin/admin_officials', {
                 title: 'Brgy. Officials',
+                fname: 'asd',//req.user.first_name,
                 officials: higher_officials,
                 messages: messages
             })
@@ -57,7 +59,7 @@ var upload = multer({
     storage: multer.memoryStorage(),
     fileFilter: function (req, file, callback) {
         var ext = path.extname(file.originalname) // Gets the external name of uploaded file
-        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+        if (ext !== '.png' && ext !== '.PNG' && ext !== '.jpg' && ext !== '.JPG' && ext !== '.gif' && ext !== '.jpeg') {
             return callback(new Error('Only images are allowed'))
         }
         callback(null, true)
@@ -139,17 +141,23 @@ router.post('/editofficials',
             })
         }
 
+        if (action == 'get_officials') {
+            var id = req.body.id
+            var query = `SELECT * FROM user_info WHERE role="Barangay Official"`
+            database.query(query, (err, data) => {
+                res.json(data);
+            })
+        }
+
         if (action == 'Edit') {
             if (req.file) {
                 var id = req.body.id
                 var position = req.body.position_post
-                var name = req.body.name_post
                 var image = req.file.buffer.toString('base64')
 
                 var query = `
                 UPDATE officials SET 
                 position = "${position}",
-                name 	 = "${name}",
                 image    = "${image}"
                 WHERE id = "${id}" 
                 `
@@ -159,11 +167,9 @@ router.post('/editofficials',
             else {
                 var id = req.body.id
                 var position = req.body.position_post
-                var name = req.body.name_post
                 var query = `
                 UPDATE officials SET 
                 position = "${position}",
-                name 	 = "${name}"
                 WHERE id = "${id}"
                 `
                 database.query(query)

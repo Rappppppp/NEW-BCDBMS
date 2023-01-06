@@ -19,7 +19,8 @@ router.get("/",
     res.render('User/services/services', {
       title: 'Services',
       services: servicesDesc,
-      name: req.user.first_name
+      fname: req.user.first_name,
+      lname: req.user.last_name
     })
   })
 

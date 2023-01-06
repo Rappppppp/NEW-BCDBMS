@@ -21,16 +21,18 @@ router.get("/",
             if (err) throw err
             var messages = []
 
-            for (var i of data[0][0]) {
-                email = i.email
-                body = i.body
-                date = i.date
-                time = i.time
-                messages.push({ email, body, date, time })
+            for (var j of data[0][0]) {
+                var name = j.name
+                email = j.email
+                body = j.body
+                date = j.date
+                time = j.time
+                messages.push({ email, name, body, date, time })
             }
 
             res.render('Admin/admin_dashboard', {
                 title: 'Cembo Admin Dashboard',
+                fname: req.user.first_name,
                 messages: messages
             })
         })

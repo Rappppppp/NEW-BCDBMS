@@ -45,4 +45,10 @@ button.btn.btn-primary.p-3.px-5{
     top: 28rem;
 }
 
+input.col-md-4.message.rounded {
+    background-color: #afafaf;
+    color: black;
+    font-size: larger;
+}
+
 textarea { resize: none; }

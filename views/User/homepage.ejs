@@ -40,13 +40,13 @@
                                 <a class="nav-link" href="/services">Services</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">Request Documents</a>
+                                <a class="nav-link" href="/barangay-documents">Barangay Forms</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav mr-5">
                             <li>
                                 <p class="nav-link text-white m-2">Hello <b>
-                                        <%= name %>
+                                        <%= fname %>
                                     </b></p>
                             </li>
                             <li>
@@ -96,14 +96,14 @@
                         <div class="container-fluid" id="content-container">
                             <div class="row border">
                                 <% posts.forEach((post)=>{ %>
-                                    <div class="col col-post m-2">
+                                    <div class="col col-post">
                                         <!-- <div class="col-lg-6 col-md-12 col-sm-3"> -->
                                         <div class="row border">
                                             <div class="card" id="announcement-item">
                                                 <div class="card-header" id="announcement-header">
-                                                    <%= post.title %>
+                                                    <%= post.title %> <br> <span class="post_author" style="font: message-box;">Posted by <b><%= post.author %></b></span>
                                                 </div>
-                                                <img class="post-card-img card-img-top align-self-center"
+                                                <img class="post-card-img card-img-top align-self-center" style="width: 50rem;"
                                                     src="data:image/png;base64,<%= post.image %>">
                                                 <div class="card-body">
                                                     <sub id="date">
@@ -158,7 +158,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Officials, m -->
             <div class="container-fluid"
                 style="background-color: var(--primary-color); box-shadow: 8px -6px 26px 3px rgba(0,0,0,0.45);">
                 <div class="container-fluid" id="officials">
@@ -245,12 +244,6 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <!--* BOOTSTRAP JS-->
 <script src="javascripts/bootstrap.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script> -->
 <script>
     function getCurrentDate() {
         var d = new Date()

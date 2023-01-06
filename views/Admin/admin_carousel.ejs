@@ -1,0 +1,201 @@
+<!doctype html>
+<%- include('./admin_head') %>
+    <link rel="stylesheet" href="stylesheets/admin_posts.css">
+    <html lang="en">
+
+    <body>
+        <div class="wrapper">
+            <!-- Fixes Footer to Bottom -->
+            <!-- Nav -->
+            <%- include('./admin_nav') %>
+                <!-- Content -->
+                <main>
+                    <div id="content">
+                        <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 68.png');">
+                            <!--* UPLOAD START -->
+                            <div class="jumbotron">
+                                <h1 class="mt-4 text-center txt-primary pt-5"><b>Upload Posts</b></h1>
+                                <form id="uploadForm_post" enctype="multipart/form-data" method="post"
+                                    autocomplete="off">
+                                    <table>
+                                        <ul>
+                                            <ol>
+                                                <input type="text" placeholder="Title" name="title_post"
+                                                    class="w-50 mb-2" required>
+                                            </ol>
+                                            <ol>
+                                                <textarea type="text" placeholder="Make an Announcement"
+                                                    name="body_post" rows="5" cols="50" class="w-50 display-5"
+                                                    required></textarea>
+                                            </ol>
+                                            <ol class="p-2">
+                                                <sub class="text-black">Max File Size: 500kb</sub>
+                                                <input type="file" name="image_post" id="image_post">
+                                                <input type="submit" value="Upload File" class="btn btn-primary">
+                                            </ol>
+                                            <input type="hidden" name="author" id="author" value="Admin <% fname %> <%= lname %>"/>
+                                            <input type="hidden" name="date_post" id="date_post">
+                                            <input type="hidden" name="time_post" id="time_post">
+                                        </ul>
+                                    </table>
+                                </form>
+                            </div>
+                            <!--* UPLOAD END -->
+
+                            <h1 class="mt-4 text-center txt-primary pt-2 pb-2"><b>Preview Posts</b></h1>
+                            <div class="container">
+                                <% posts.forEach((post)=>{ %>
+                                    <div class="card-group vgr-cards mb-5">
+                                        <div class="card">
+                                            <div class="card-img-body">
+                                                <img class="card-img" style="width: 20rem;"
+                                                    src="data:image/png;base64,<%= post.image %>" alt="Card image cap">
+                                            </div>
+                                            <div class="card-body">
+                                                <h4 class="c-title" id="title" name="title">
+                                                    <%= post.title %>
+                                                </h4>
+                                                <sub id="date">
+                                                    <%= post.date %>
+                                                </sub>&nbsp;&nbsp;&nbsp;<sub>
+                                                    <%= post.time %>
+                                                </sub>
+                                                <p class="card-text" id="body" name="body">
+                                                    <%= post.body %>
+                                                </p>
+                                                <div>
+                                                    <button class="button btn-warning btn edit"
+                                                        data-id="<%= post.id %>">Edit</button>
+                                                    <button class="button btn-danger  btn delete"
+                                                        data-id="<%= post.id %>">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </div>
+                            <div class="jumbotron"></div>
+                        </div>
+                    </div>
+                </main>
+        </div>
+    </body>
+
+
+    <div class="modal" tabindex="-1" id="action_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" id="form_post" enctype="multipart/form-data">
+                    <div class="modal-header" id="dynamic_modal_title">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" name="title_post" id="title_post" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Body</label>
+                            <textarea type="text" placeholder="Make an Announcement" name="body_post" id="body_post"
+                                rows="5" cols="50" class="form-control w-100 display-5" required></textarea>
+                        </div>
+                        <div>
+                            <input type="file" name="update-image" id="image_post">
+                        </div>
+
+                        <div class="modal-footer mt-2">
+                            <input type="hidden" name="id" id="id" />
+                            <input type="hidden" name="action" id="action" value="Add" />
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                id="close_button">Close</button>
+                            <button type="submit" class="btn btn-primary" id="action_button">Add</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </html>
+
+    <script src="javascripts/admin_homepage.js"></script>
+    <!--* AJAX-->
+    <script src="javascripts/jquery.js"></script>
+
+    <!--* BOOTSTRAP JS-->
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script>
+        uploadFormPost = $('#uploadForm_post').prop('action', `${window.location.origin}/adminposts/upload`)
+        formPost = $('#form_post').prop('action', `${window.location.origin}/adminposts/editpost`)
+
+        function getCurrentDate() {
+            var d = new Date()
+            var date = d.getFullYear() + "-" +
+                ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+                ("0" + d.getDate()).slice(-2)
+
+            return date
+        }
+
+        function getCurrentTime() {
+            var currentTime;
+            var currentDate = new Date()
+            var hour = currentDate.getHours();
+            var meridiem = hour >= 12 ? "PM" : "AM";
+            var currentTime = `${((hour + 11) % 12 + 1)}:${currentDate.getMinutes()} ${meridiem}`
+
+            return currentTime;
+        }
+
+        $('#date_post').val(getCurrentDate())
+        $('#time_post').val(getCurrentTime())
+
+
+        $(document).ready(() => {
+
+            $(document).on('click', '#close_button', function () {
+                $('#form_post')[0].reset()
+                $('#action_button').attr('disabled', false)
+                $('#action_modal').modal('hide')
+            })
+
+            var url = `${window.location.origin}/adminposts/editpost`
+
+            $(document).on('click', '.edit', function (e) {
+                e.preventDefault()
+                var id = $(this).data('id')
+
+                $('#dynamic_modal_title').text('Edit Post')
+                $('#action').val('Edit')
+                $('#action_button').text('Edit')
+                $('#action_modal').modal('show')
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: { action: 'fetch_single', id: id },
+                    dataType: "JSON",
+                    success: function (data) {
+                        $('#id').val(data.id)
+                        $('#title_post').val(data.title)
+                        $('#body_post').val(data.body)
+                    }
+                })
+            })
+
+            $(document).on('click', '.delete', function () {
+                var id = $(this).data('id')
+                if (confirm("Are you sure you want to delete this data?")) {
+                    $.ajax({
+                        url: url,
+                        method: "POST",
+                        data: { action: 'delete', id: id },
+                        success: function () {
+                            setTimeout(function () {
+                                window.location.reload()
+                            }, 100)
+                        }
+                    })
+                }
+            })
+        })
+    </script>

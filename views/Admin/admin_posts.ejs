@@ -52,6 +52,9 @@
                                             </div>
                                             <div class="card-body">
                                                 <h4 class="c-title" id="title" name="title">
+                                                    <b><%= post.author %></b><br>
+                                                </h4>
+                                                <h4 class="c-title" id="title" name="title">
                                                     <%= post.title %>
                                                 </h4>
                                                 <sub id="date">
@@ -74,10 +77,6 @@
                                     <% }) %>
                             </div>
                             <div class="jumbotron"></div>
-                            <!-- <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 109.png');">
-                            </div>
-                            <div class="parallax-bg-img" style="background-image: url('res/Rectangle\ 68.png');">
-                            </div> -->
                         </div>
                     </div>
                 </main>
@@ -128,7 +127,7 @@
     <!--* BOOTSTRAP JS-->
     <script src="javascripts/bootstrap.min.js"></script>
     <script>
-        uploadFormPost = $('#uploadForm_post').prop('action', `${window.location.origin}/adminposts/editpost`)
+        uploadFormPost = $('#uploadForm_post').prop('action', `${window.location.origin}/adminposts/upload`)
         formPost = $('#form_post').prop('action', `${window.location.origin}/adminposts/editpost`)
 
         function getCurrentDate() {
@@ -152,7 +151,6 @@
 
         $('#date_post').val(getCurrentDate())
         $('#time_post').val(getCurrentTime())
-
 
         $(document).ready(() => {
 

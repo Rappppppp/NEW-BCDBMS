@@ -2,34 +2,26 @@ if (process.env.NODE_ENV !== 'production') {
 	require('dotenv').config()
 }
 
-const mysql = require('mysql') //require('mysql');
+const mysql = require('mysql') 
 mysql.createConnection({ multipleStatements: true });
-//* DATABASE NAME HERE
-// const createDB = require('./createDB')
 
-// //* CREATES DATABASE FROM createDB.js 
-// createDB.setDB()
-
-// // * GET DB name
-// const db = createDB.name()
-
-// const con = mysql.createConnection({
-// 	host: '',
-// 	database: `BCDBMS`,
-// 	user: 'root',
-// 	password: ''
-// })
+const con = mysql.createConnection({
+	host: '',
+	database: `BCDBMS`,
+	user: 'root',
+	password: ''
+})
 
 const id_n_chars = 50
 
-const con = mysql.createPool({ //createPool
-	host: 'sql.freedb.tech',
-	database: `freedb_CemboDB`,
-	user: 'freedb_arolatenci',
-	password: '5yYuaPN*&x49j5Z',
-	port: 3306,
-	charset: "utf8mb4"
-})
+// const con = mysql.createPool({ //createPool
+// 	host: 'sql.freedb.tech',
+// 	database: `freedb_CemboDB`,
+// 	user: 'freedb_arolatenci',
+// 	password: '5yYuaPN*&x49j5Z',
+// 	port: 3306,
+// 	charset: "utf8mb4"
+// })
 
 // const con = mysql.createPool({ //createConnection
 // 	host: process.env.DB_HOST,
@@ -39,7 +31,7 @@ const con = mysql.createPool({ //createPool
 // 	port: process.env.PORT,
 // })
 
-con.getConnection(function (error, connection) { //con.getConnection - con.connect
+con.connect(function (error, connection) { //con.getConnection - con.connect
 	if (error) {
 		throw error;
 	}
@@ -48,10 +40,10 @@ con.getConnection(function (error, connection) { //con.getConnection - con.conne
 		//* USER TABLES START
 		const user_info = `
 		CREATE TABLE IF NOT EXISTS user_info (	
-		id 						VARCHAR(${id_n_chars}) PRIMARY KEY, 				
+		id 						VARCHAR(${id_n_chars}) PRIMARY KEY, 
+		role   				VARCHAR(20),				
 		isActive 			BOOLEAN,
-		first_name   	VARCHAR(50), 							
-		role   				VARCHAR(20), 							
+		first_name   	VARCHAR(50), 							 							
 		last_name    	VARCHAR(30), 							
 		middle_name  	VARCHAR(30), 							
 		password     	VARCHAR(100), 							
@@ -124,27 +116,40 @@ con.getConnection(function (error, connection) { //con.getConnection - con.conne
 
 		const officials = `
 		CREATE TABLE IF NOT EXISTS officials (	
-		id 				INTEGER(20) UNIQUE, 
+		id 				VARCHAR(${id_n_chars}) PRIMARY KEY,
 		position 	VARCHAR(30), 
-		name 			VARCHAR(50), 
+		name 			VARCHAR(50),
 		image 		LONGTEXT
 		)`
 
-		const posts = `
-		CREATE TABLE IF NOT EXISTS posts (
-		id INTEGER(100) AUTO_INCREMENT PRIMARY KEY, 
+		const carousel = `
+		CREATE TABLE IF NOT EXISTS carousel (
+		id INTEGER(100) AUTO_INCREMENT PRIMARY KEY,
+		user_id VARCHAR(${id_n_chars}),
 		title VARCHAR(100), 
 		body VARCHAR(500), 
+		author VARCHAR(50),
 		date VARCHAR(10), 
 		time VARCHAR(10), 
 		image LONGTEXT
 		)`
 
+		const posts = `
+		CREATE TABLE IF NOT EXISTS posts (
+		id INTEGER(100) AUTO_INCREMENT PRIMARY KEY,
+		user_id VARCHAR(${id_n_chars}),
+		title VARCHAR(100), 
+		body VARCHAR(500), 
+		author VARCHAR(50),
+		date VARCHAR(10), 
+		time VARCHAR(10), 
+		image LONGTEXT
+		)`
 
 		const user_messages = `
 		CREATE TABLE IF NOT EXISTS user_messages (
 		id INTEGER(100) AUTO_INCREMENT PRIMARY KEY, 
-		email VARCHAR(50), 
+		name VARCHAR(50), 
 		body VARCHAR(500), 
 		date VARCHAR(10), 
 		time VARCHAR(10)
@@ -156,45 +161,32 @@ con.getConnection(function (error, connection) { //con.getConnection - con.conne
 
 		// con.query(setFKChecks)
 
-		con.query(user_info, function (err, result) {
-			if (err) throw err
-		})
+		const queries_arr = [
+			user_info, 
+			contact_info,
+			makati_info,
+			household_info,
+			makati_cards,
+			income_info,
+			user_messages,
+			officials,
+			posts,
+			carousel
+		]
 
-		con.query(contact_info, function (err, result) {
-			if (err) throw err
-		})
+		function queries (query) {
+			con.query(query, function (err) {
+				if (err) throw err
+			})
+		}
 
-		con.query(makati_info, function (err, result) {
-			if (err) throw err
-		})
+		var counter = 0
 
-		con.query(household_info, function (err, result) {
-			if (err) throw err
-		})
-
-		con.query(makati_cards, function (err, result) {
-			if (err) throw err
-		})
-
-		con.query(income_info, function (err, result) {
-			if (err) throw err
-		})
-
-		con.query(user_messages, function (err, result) {
-			if (err) throw err
-		})
-
-		//* BRGY OFFICIALS
-		con.query(officials, function (err, result) {
-			if (err) throw err
-		})
-
-		//* REGISTER END
-		con.query(posts, function (err, result) {
-			// if (err) done(err)
-			if (err) throw err
-			console.log('Tables created Successfully!')
-		})
+		for (i of queries_arr) {
+			counter += 1
+			queries(i)
+			counter == queries_arr.length ? console.log('Tables Created Successfuly!') : ''
+		}
 	}
 })
 

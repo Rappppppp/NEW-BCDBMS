@@ -62,8 +62,10 @@ app.use('/admin', adminTable)
 //x USER (Logged in)
 const homepage = require('./routes/User/homepage')
 const aboutUs = require('./routes/User/about_us')
+const documents = require('./routes/User/forms.js')
 app.use('/', homepage)
 app.use('/aboutus', aboutUs)
+app.use('/barangay-documents', documents)
 
 //! USER Services
 const services = require('./routes/User/services/services')
@@ -76,6 +78,9 @@ app.use('/health-center', healthCenter)
 app.use('/fire-dept', fireDept)
 app.use('/maintenance', maintenance)
 app.use('/agricultural', agricultural)
+
+const brgyid = require('./routes/User/forms/brgy_id')
+app.use('/brgy-id', brgyid)
 
 //X GLOBAL
 const register = require('./routes/register')

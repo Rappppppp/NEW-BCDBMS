@@ -10,7 +10,8 @@ router.get("/",
   (req, res, next) => {
     res.render('User/services/agricultural', {
       title: 'Agricultural',
-      name: req.user.first_name
+      fname: req.user.first_name,
+      lname: req.user.last_name
     })
   })
 

@@ -24,23 +24,27 @@ router.get("/", authUser, checkAuthenticated, authRole('Admin'), (req, res, next
             id = i.id
             title = i.title
             body = i.body
+            author = i.author
             date = i.date
             time = i.time
             image = i.image
-            arr_post.push({ id, title, body, date, time, image })
+            arr_post.push({ id, title, body, author, date, time, image })
         }
 
-        for (var i of data[1][0]) {
-            email = i.email
-            body = i.body
-            date = i.date
-            time = i.time
-            messages.push({ email, body, date, time })
+        for (var j of data[1][0]) {
+            var name = j.name
+            email = j.email
+            body = j.body
+            date = j.date
+            time = j.time
+            messages.push({ email, name, body, date, time })
         }
 
         res.render('Admin/admin_posts', {
             title: 'Cembo Admin Posts',
             posts: arr_post,
+            fname: req.user.first_name,
+            lname: req.user.last_name,
             messages: messages
         })
     })
@@ -57,17 +61,16 @@ var upload = multer({ storage: multer.memoryStorage(), limits }) //, limits -add
 router.post('/upload', upload.single('image_post'), (req, res) => {
 
     //* UPLOAD POSTS START
+    var id = req.user.user_id
     var title = req.body.title_post
     var body = req.body.body_post
+    var author = `Admin ${req.user.first_name} ${req.user.last_name}`
     var date = req.body.date_post
     var time = req.body.time_post
     var image = req.file.buffer.toString('base64')
-
-    // console.log(`${title}\n${body}\n${date}\n${time}`)
-
-    var query_post = `INSERT INTO posts VALUES(NULL, "${title}", "${body}", "${date}", "${time}", "${image}")`
-
-    database.query(query_post, function (error, data) {
+    console.log(id)
+    var query_post = `INSERT INTO posts VALUES(NULL, "${id}", "${title}", "${body}", "${author}", "${date}", "${time}", "${image}")`
+    database.query(query_post, () => {
         res.redirect('/adminposts')
     })
 

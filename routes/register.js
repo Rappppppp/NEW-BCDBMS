@@ -45,8 +45,8 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 		var user_info = `
 		INSERT INTO user_info(
 			id,
+			role,
 			isActive,
-		 	role,
 			first_name,
 			last_name, 
 			middle_name, 
@@ -60,8 +60,8 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 		) 
 		VALUES (
 			"${id}", 
-			"1",
 			"User", 
+			"1",
 			"${first_name}", 
 			"${last_name}", 
 			"${middle_name}", 
@@ -155,6 +155,7 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			"${family_members}"
 		)
 		`
+		console.log(household_info)
 
 		//* MAKATI CARDS
 		var yellow = req.body.yellow
@@ -180,6 +181,8 @@ router.post("/action", async (req, res) => { //checkNotAuthenticated
 			"${makatizen}",
 			"${philhealth}"
 		)`
+
+		console.log(makati_cards)
 
 		// //* INCOME INFO
 		var educ = req.body.educ

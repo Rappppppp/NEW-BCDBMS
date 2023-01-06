@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://unpkg.com/pdf-lib@1.11.0"></script>
+  <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+<%- include('../User/parts/headlib') %>
+    <link rel="stylesheet" href="stylesheets/about_us.css">
+    <link rel="stylesheet" href="stylesheets/about_us_main.css">
+    <link rel="stylesheet" href="stylesheets/about_us_footer.css">
+    <style>
+      .row-forms {
+        margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        background-color:#ffffff00;
+        color: black;
+      }
+
+      .col-forms {
+        padding: 3rem 1rem 6rem;
+        background-color: #fcc422;
+        font-family: fantasy;
+        font-size: xx-large;
+        width: 50%;
+      }
+      
+      .col-forms:hover {
+        color: black;
+        cursor: pointer;
+        background-color: #ca9e1b;
+        transition: 0.5s;
+      }
+    </style>
+
+    <body style="background-color: #375778;">
+        <div class="wrapper">
+            <%- include('./parts/header') %>
+                <!-- ***** Main Banner Area Start ***** -->
+                <div class="main-banner" id="top">
+                    <img id="bg-video" src="images/Brgy-Cembo.jpg" alt="">
+
+                    <div class="video-overlay header-text">
+                        <div class="caption">
+
+                          <div class="row row-forms">
+                            <a href="/brgy-id"  class="col col-forms card m-3">
+                              <div>
+                                Barangay ID
+                              </div>
+                            </a>
+                              <div class="col col-forms card m-3">
+                                Barangay Clearance
+                              </div>
+                              <div class="col col-forms card m-3">
+                                Business Form
+                              </div>
+                              <div class="col col-forms card m-3">
+                                Barangay Certificate
+                              </div>
+                          </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ***** Footer Start ***** -->
+                <footer class="page-footer">
+                    <div class="jumbotron jumbotron-footer">
+                        <div class="container text-white my-3">
+                            <form action="">
+                                <div class="row pb-3">
+                                    <h5 class="col message">Message us</h5>
+                                    <div class="col"></div>
+                                    <div class="col"></div>
+                                </div>
+                                <div class="row pb-3">
+                                    <input class="col-md-4  message rounded" type="text" placeholder="Email">
+                                    <div class="col-md-6 btn-contact">
+                                        <button type="button" class="btn btn-primary p-3 px-5">Contact
+                                            Site
+                                            Support</button>
+                                    </div>
+                                    <div class="col text-right mr-5">
+                                        <h5>Contact us</h5>
+                                        <a class="col-md-2" href="#"><img src="images/Gmail-logo.png"
+                                                style="width: 3rem;" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="row pb-3">
+                                    <textarea class="col-md-4 message rounded" type="text" placeholder="Message"
+                                        rows="5" cols="50"></textarea>
+                                    <div class="col-md-6 text-center">Get Mobile
+                                        App</div>
+                                    <div class="col text-right mr-5">
+                                        <h5>Follow us</h5>
+                                        <a class="col-md-2" href="#"><img src="images/Facebook-logo.png"
+                                                style="width: 3rem;" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 message-btn">
+                                        <button class="btn btn-primary px-4 message" type="submit">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </footer>
+        </div>
+    </body>
+</html>
+
+<!-- jQuery -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="javascripts/bootstrap.min.js"></script>

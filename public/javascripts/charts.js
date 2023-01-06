@@ -1,16 +1,22 @@
-const bgColor = ['rgba(255, 99,  132, 0.2)',
-    'rgba(54,  162, 235, 0.2)',
-    'rgba(255, 206, 86,  0.2)',
-    'rgba(75,  192, 192, 0.2)',
-    'rgba(153, 102, 255, 0.2)',
-    'rgba(255, 159, 64,  0.2)']
+const bgColor = [
+    'rgba(255, 99,  132)',
+    'rgba(54,  162, 235)',
+    'rgba(255, 206, 86)',
+    'rgba(75,  192, 192)',
+    'rgba(153, 102, 255)',
+    'rgba(255, 159, 64)'
+]
 
-const bColor = ['rgba(255, 99,  132, 1)',
-    'rgba(54,  162, 235, 1)',
-    'rgba(255, 206, 86,  1)',
-    'rgba(75,  192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64,  1)']
+
+const bColor = [
+    'rgba(255, 99,  132)',
+    'rgba(54,  162, 235)',
+    'rgba(255, 206, 86)',
+    'rgba(75,  192, 192)',
+    'rgba(153, 102, 255)',
+    'rgba(255, 159, 64)'
+]
+
 
 const link = `${window.location.origin}/admindashboard`
 
@@ -71,22 +77,8 @@ $.ajax({
                 datasets: [{
                     label: '',
                     data: [Male, Female, Lesbian, Gay, Others],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: bgColor,
+                    borderColor: bColor,
                     borderWidth: 1
                 }]
             },
@@ -133,22 +125,8 @@ $.ajax({
                 datasets: [{
                     label: '',
                     data: [child.length, teen.length, youngAdult.length, adult.length, senior.length],
-                    backgroundColor: [
-                        'rgba(255, 99,  132, 0.2)',
-                        'rgba(54,  162, 235, 0.2)',
-                        'rgba(255, 206, 86,  0.2)',
-                        'rgba(75,  192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64,  0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99,  132, 1)',
-                        'rgba(54,  162, 235, 1)',
-                        'rgba(255, 206, 86,  1)',
-                        'rgba(75,  192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64,  1)'
-                    ],
+                    backgroundColor: bgColor,
+                    borderColor: bColor,
                     borderWidth: 1
                 }]
             },
@@ -189,20 +167,8 @@ $.ajax({
                 datasets: [{
                     label: '',
                     data: [NA, Education, Health, Social_Welfare, Sports],
-                    backgroundColor: [
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(245, 245, 245, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(205, 205, 205, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(75, 192, 192, 1)'
-                    ],
+                    backgroundColor: bgColor,
+                    borderColor: bColor,
                     borderWidth: 1.5
                 }]
             },
@@ -256,21 +222,8 @@ $.ajax({
                         sum(makatizen),
                         sum(philhealth)
                     ],
-                    backgroundColor: [
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(245, 245, 245, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
-
-                    ],
-                    borderColor: [
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(205, 205, 205, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(75, 192, 192, 1)'
-                    ],
+                    backgroundColor: bgColor,
+                    borderColor: bColor,
                     borderWidth: 1.5
                 }]
             },
@@ -310,22 +263,8 @@ $.ajax({
                 datasets: [{
                     label: '',
                     data: [single, married, widowed, livein, separated],
-                    backgroundColor: [
-                        'rgba(255, 99,  132, 0.2)',
-                        'rgba(54,  162, 235, 0.2)',
-                        'rgba(255, 206, 86,  0.2)',
-                        'rgba(75,  192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64,  0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99,  132, 1)',
-                        'rgba(54,  162, 235, 1)',
-                        'rgba(255, 206, 86,  1)',
-                        'rgba(75,  192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64,  1)'
-                    ],
+                    backgroundColor: bgColor,
+                    borderColor: bColor,
                     borderWidth: 1
                 }]
             },
@@ -366,22 +305,8 @@ $.ajax({
                 datasets: [{
                     label: '',
                     data: [fvaccinated, SD, UV],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: bgColor,
+                    borderColor: bColor,
                     borderWidth: 1
                 }]
             },
@@ -438,22 +363,8 @@ $.ajax({
                 datasets: [{
                     label: '',
                     data: [catholic, INC, muslim, bornAgain, SDA, SNJ, mormons, buddhist, others],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
+                    backgroundColor: bgColor,
+                    borderColor: bColor,
                     borderWidth: 1
                 }]
             },
